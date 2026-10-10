@@ -4,318 +4,580 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aman Jha — Full Stack Engineer</title>
-<meta name="description" content="Aman Jha, full stack engineer. I build WebRTC/SIP dialers inside CRMs, OAuth and webhook pipelines, and 45+ API integrations with Node.js, TypeScript and Angular.">
+<meta name="description" content="Aman Jha, full stack engineer. I built a WebRTC dialer that runs inside 5 CRMs, the OAuth backend behind it, and 45+ production integrations.">
 <meta property="og:title" content="Aman Jha — Full Stack Engineer">
-<meta property="og:description" content="I write the code that connects CRMs, phones and AI.">
+<meta property="og:description" content="45+ integrations. 5 CRMs. One engineer who doesn’t stop.">
 <meta property="og:image" content="https://amanjha7.github.io/assets/og.png">
 <meta property="og:url" content="https://amanjha7.github.io/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231c5a31'/><text x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23f2eee6' text-anchor='middle'>aj</text></svg>">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0a0a'/><text x='16' y='22' font-family='monospace' font-weight='700' font-size='15' fill='%23d4ff3a' text-anchor='middle'>AJ</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f2eee6; --bg2:#ebe6db; --ink:#161513; --muted:#6d675c; --soft:#4f4a42; --line:#d9d2c3;
-  --accent:#1c5a31; --h0:#e3ddd0; --h1:#b8d4a8; --h2:#79b26f; --h3:#3d8a4c; --h4:#1c5a31;
-}
-@media (prefers-color-scheme: dark){
-  :root{ --bg:#151412; --bg2:#1c1b18; --ink:#ece7dc; --muted:#9a9384; --soft:#c2bbad; --line:#2f2c27;
-    --accent:#8fd18a; --h0:#24221e; --h1:#2c4a2b; --h2:#3d7a40; --h3:#5fae5c; --h4:#9be096; }
+  --bg:#0a0a0a; --bg1:#111111; --bg2:#161616; --line:#232323; --line2:#2e2e2e;
+  --ink:#f5f5f2; --soft:#b4b4ae; --muted:#76766f; --acc:#d4ff3a; --acc-ink:#0a0a0a;
+  --sans:"Inter Tight",system-ui,-apple-system,Segoe UI,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration-color:var(--line);text-underline-offset:3px}
-a:hover{text-decoration-color:var(--accent);color:var(--accent)}
-.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
-nav{display:flex;justify-content:space-between;align-items:center;padding:28px 0;font:500 13px "JetBrains Mono",monospace;letter-spacing:.4px}
-nav .links{display:flex;gap:22px}
-nav a{text-decoration:none;color:var(--muted)}
-nav a:hover{color:var(--ink)}
-nav .me{color:var(--ink);font-weight:600;letter-spacing:1.6px;text-transform:uppercase}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--acc);color:var(--acc-ink)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono)}
+.acc{color:var(--acc)}
 
-header.hero{padding:56px 0 40px}
-.kicker{font:500 12.5px "JetBrains Mono",monospace;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-h1{font:400 clamp(44px,7.4vw,88px)/1.0 "Instrument Serif",Georgia,serif;letter-spacing:-1px;margin:18px 0 22px}
-h1 em,h2 em{color:var(--accent)}
-.lede{max-width:640px;font-size:18px;color:var(--soft)}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{font:500 13.5px "JetBrains Mono",monospace;padding:11px 18px;border:1px solid var(--ink);border-radius:999px;text-decoration:none}
-.btn.solid{background:var(--ink);color:var(--bg)}
-.btn.solid:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
-.btn:hover{border-color:var(--accent)}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+nav.scrolled{border-bottom-color:var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:700 15px var(--mono);letter-spacing:.5px;display:flex;align-items:center;gap:10px}
+.logo b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--acc);color:var(--acc-ink);font-size:13px}
+.navlinks{display:flex;align-items:center;gap:26px;font:500 14px var(--mono);color:var(--soft)}
+.navlinks a:hover{color:var(--ink)}
+.kbd{font:500 12px var(--mono);border:1px solid var(--line2);border-bottom-width:2px;border-radius:6px;padding:2px 7px;color:var(--soft);background:var(--bg1);cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 15px var(--sans);padding:13px 20px;border-radius:10px;border:1px solid var(--line2);transition:transform .15s,background .15s,border-color .15s;cursor:pointer;background:none;color:var(--ink)}
+.btn:hover{transform:translateY(-2px);border-color:var(--soft)}
+.btn.pri{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.btn.pri:hover{background:#e3ff7a}
 
-.heat{margin:56px 0 0;padding:24px 0 0;border-top:1px solid var(--line)}
-.heat svg{width:100%;height:auto;display:block}
-.heat .lab{font:500 9px "JetBrains Mono",monospace;fill:var(--muted)}
-.heat .cap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:12px;font:12.5px "JetBrains Mono",monospace;color:var(--muted)}
-.heat .cap b{color:var(--ink)}
-.legend{display:inline-flex;align-items:center;gap:4px}
-.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+/* hero */
+.hero{padding:88px 0 40px;position:relative}
+.status{display:inline-flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--soft);border:1px solid var(--line2);padding:7px 14px;border-radius:999px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 0 rgba(212,255,58,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(212,255,58,0)}100%{box-shadow:0 0 0 0 rgba(212,255,58,0)}}
+h1{font:900 clamp(52px,9.2vw,128px)/.92 var(--sans);letter-spacing:-.045em;margin:30px 0 0}
+h1 .line{display:block;overflow:hidden;padding-bottom:.04em}
+h1 .line span{display:inline-block;transform:translateY(105%);animation:rise .9s cubic-bezier(.2,.7,.1,1) forwards}
+h1 .line:nth-child(2) span{animation-delay:.08s}
+h1 .line:nth-child(3) span{animation-delay:.16s}
+h1 .line:nth-child(4) span{animation-delay:.24s}
+@keyframes rise{to{transform:none}}
+.hero-grid{display:grid;grid-template-columns:1fr 520px;gap:56px;align-items:start;margin-top:56px}
+.lede{font-size:21px;line-height:1.55;color:var(--soft);margin:0;max-width:560px}
+.lede b{color:var(--ink);font-weight:600}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:56px 0}
-.stat{padding:22px 20px 22px 0}
-.stat+.stat{padding-left:20px;border-left:1px solid var(--line)}
-.stat b{display:block;font:400 44px/1 "Instrument Serif",Georgia,serif}
-.stat span{display:block;margin-top:8px;font:12px "JetBrains Mono",monospace;color:var(--muted);letter-spacing:.6px;text-transform:uppercase}
+/* terminal */
+.term{background:var(--bg1);border:1px solid var(--line2);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.8)}
+.term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.term-bar i{width:11px;height:11px;border-radius:50%;background:#2c2c2c}
+.term-bar span{margin-left:auto;font:12px var(--mono);color:var(--muted)}
+.term-body{height:300px;overflow-y:auto;padding:16px 18px;font:14px/1.7 var(--mono);color:var(--soft);cursor:text;scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+.term-body .p{color:var(--acc)}
+.term-body .o{color:var(--ink);white-space:pre-wrap}
+.term-body .dim{color:var(--muted)}
+.term-body .acc{color:var(--acc)}
+.term-body a{color:var(--acc);text-decoration:underline;text-underline-offset:3px}
+.term-in{display:flex;gap:8px}
+.term-in input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--ink);font:inherit;caret-color:var(--acc);padding:0}
+.term-hint{padding:10px 18px;border-top:1px solid var(--line);font:12px var(--mono);color:var(--muted)}
+.term-hint b{color:var(--soft);font-weight:500}
 
-section{padding:40px 0}
-h2{font:400 clamp(34px,4.6vw,50px)/1.05 "Instrument Serif",Georgia,serif;letter-spacing:-.5px;margin:0 0 10px}
-.sub{color:var(--muted);margin:0 0 34px;max-width:640px}
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:88px;overflow:hidden;white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:inline-flex;animation:slide 48s linear infinite;padding:22px 0}
+.track span{font:600 22px var(--sans);color:var(--muted);padding:0 26px;letter-spacing:-.01em}
+.track span::after{content:"✦";margin-left:52px;color:var(--line2);font-size:14px;position:relative;top:-3px}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
 
-.job{display:grid;grid-template-columns:220px 1fr;gap:28px;padding:6px 0 26px}
-.job .when{font:13px "JetBrains Mono",monospace;color:var(--muted)}
-.job h3{margin:0;font-size:19px;font-weight:600}
-.job .role{color:var(--soft);margin:2px 0 0}
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);margin:0}
+.num{padding:44px 28px 40px 0}
+.num+.num{padding-left:28px;border-left:1px solid var(--line)}
+.num b{display:block;font:800 clamp(48px,6vw,76px)/1 var(--sans);letter-spacing:-.04em}
+.num b em{font-style:normal;color:var(--acc)}
+.num span{display:block;margin-top:12px;font:500 13px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:1px}
 
-.case{display:grid;grid-template-columns:220px 1fr;gap:28px;padding:28px 0;border-top:1px solid var(--line)}
-.case .idx{font:500 13px "JetBrains Mono",monospace;color:var(--muted)}
-.case .idx b{display:block;color:var(--accent);font-weight:600;margin-bottom:6px}
-.case h3{font:400 30px/1.1 "Instrument Serif",Georgia,serif;margin:0 0 10px}
-.case p{margin:0 0 12px;color:var(--soft)}
-.case ul{margin:0 0 14px;padding-left:18px;color:var(--soft)}
-.case li{margin-bottom:5px}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tags span{font:12px "JetBrains Mono",monospace;padding:3px 9px;border:1px solid var(--line);border-radius:6px;color:var(--soft)}
+/* sections */
+section{padding:110px 0 0}
+.eyebrow{font:500 13px var(--mono);color:var(--acc);letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--acc)}
+h2{font:800 clamp(38px,5.4vw,68px)/1 var(--sans);letter-spacing:-.04em;margin:18px 0 18px}
+h2 .dim{color:var(--muted)}
+.sec-sub{color:var(--soft);font-size:19px;max-width:620px;margin:0 0 48px}
 
-.integrations{columns:4 180px;column-gap:28px;font:14px "JetBrains Mono",monospace;color:var(--soft);margin:0;padding:0;list-style:none}
-.integrations li{break-inside:avoid;padding:6px 0;border-bottom:1px dashed var(--line)}
-.integrations li small{color:var(--muted);font-size:11px;margin-left:6px}
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.card{position:relative;background:var(--bg1);border:1px solid var(--line);border-radius:18px;padding:30px;overflow:hidden;transition:border-color .25s,transform .25s,opacity .8s cubic-bezier(.2,.7,.1,1)}
+.card:hover{border-color:var(--line2)}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(212,255,58,.07),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover::before{opacity:1}
+.c-6{grid-column:span 6}.c-3{grid-column:span 3}.c-2{grid-column:span 2}
+.card .k{font:500 12px var(--mono);color:var(--muted);letter-spacing:1px;text-transform:uppercase;display:flex;justify-content:space-between}
+.card .k b{color:var(--acc);font-weight:500}
+.card h3{font:800 clamp(26px,2.8vw,36px)/1.05 var(--sans);letter-spacing:-.03em;margin:16px 0 12px}
+.card p{color:var(--soft);margin:0 0 16px;font-size:16.5px}
+.card ul{margin:0 0 18px;padding:0;list-style:none;color:var(--soft);font-size:15.5px}
+.card li{padding:7px 0 7px 22px;position:relative;border-top:1px dashed var(--line)}
+.card li::before{content:"→";position:absolute;left:0;color:var(--acc);font-family:var(--mono)}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tags span{font:500 12.5px var(--mono);padding:4px 10px;border-radius:7px;background:var(--bg2);border:1px solid var(--line);color:var(--soft)}
+.split{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center}
 
-.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
-.skills div{padding:20px 20px 20px 0;border-bottom:1px solid var(--line)}
-.skills h4{margin:0 0 6px;font:600 12px "JetBrains Mono",monospace;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
-.skills p{margin:0;font-size:15px}
+/* flow diagram */
+.flow{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:22px}
+.flow svg{width:100%;height:auto;display:block}
+.flow .bx{fill:var(--bg2);stroke:var(--line2)}
+.flow .bx.hi{fill:rgba(212,255,58,.08);stroke:var(--acc)}
+.flow .t{font:600 13px var(--sans);fill:var(--ink)}
+.flow .s{font:11px var(--mono);fill:var(--muted)}
+.flow .ln{stroke:var(--line2);stroke-width:1.5;fill:none}
+.flow .pk{fill:var(--acc)}
 
-.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.proj{display:block;padding:20px;border:1px solid var(--line);border-radius:12px;text-decoration:none;background:var(--bg2);transition:transform .15s,border-color .15s}
-.proj:hover{transform:translateY(-2px);border-color:var(--accent);color:inherit}
-.proj h3{margin:0 0 6px;font-size:16px;font-weight:600}
-.proj p{margin:0 0 12px;font-size:14px;color:var(--soft)}
-.proj .lang{font:12px "JetBrains Mono",monospace;color:var(--muted)}
+pre.code{margin:0 0 18px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font:13px/1.7 var(--mono);color:var(--soft);overflow-x:auto}
+pre.code .c{color:var(--muted)} pre.code .kw{color:#c7a6ff} pre.code .f{color:var(--acc)} pre.code .s{color:#ffc58a}
 
-.edu{display:grid;grid-template-columns:220px 1fr;gap:28px;padding:14px 0;border-top:1px solid var(--line)}
-.edu .when{font:13px "JetBrains Mono",monospace;color:var(--muted)}
-.edu b{font-weight:600}
+.cloud{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 0}
+.cloud span{font:500 14px var(--sans);padding:6px 12px;border-radius:999px;border:1px solid var(--line2);color:var(--soft);transition:all .2s}
+.cloud span:hover{border-color:var(--acc);color:var(--acc)}
+.cloud span.hot{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
 
-footer{margin-top:40px;padding:56px 0 64px;border-top:1px solid var(--line)}
-footer h2{margin-bottom:18px}
-.contact{display:flex;flex-wrap:wrap;gap:12px 28px;font:14px "JetBrains Mono",monospace}
-.fine{margin-top:40px;font:12px "JetBrains Mono",monospace;color:var(--muted)}
+.replay{display:flex;align-items:flex-end;gap:3px;height:70px;margin:6px 0 18px}
+.replay i{flex:1;height:100%;background:var(--line2);border-radius:2px;transform-origin:bottom;animation:eq 1.6s ease-in-out infinite alternate}
+.replay i:nth-child(3n){background:var(--acc)}
+@keyframes eq{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
 
-@media (max-width:760px){
-  nav .links{gap:14px} nav .links a.hide{display:none}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .stat:nth-child(3){padding-left:0;border-left:0}
-  .stat:nth-child(n+3){border-top:1px solid var(--line)}
-  .job,.case,.edu{grid-template-columns:1fr;gap:8px}
-  .skills{grid-template-columns:1fr}
-  .projects{grid-template-columns:1fr}
-  .heat .scroll{overflow-x:auto} .heat svg{min-width:760px}
-  h1 br{display:none}
+/* principles */
+.rules{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}
+.rule{padding:40px 40px 40px 0;border-bottom:1px solid var(--line)}
+.rule:nth-child(even){padding-left:40px;padding-right:0;border-left:1px solid var(--line)}
+.rule .n{font:500 13px var(--mono);color:var(--acc)}
+.rule h3{font:800 34px/1.05 var(--sans);letter-spacing:-.03em;margin:12px 0 10px}
+.rule p{margin:0;color:var(--soft)}
+
+/* stack */
+.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stk{background:var(--bg1);border:1px solid var(--line);border-radius:16px;padding:24px}
+.stk h4{margin:0 0 14px;font:500 12px var(--mono);letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+.stk div{display:flex;flex-wrap:wrap;gap:8px}
+.stk span{font:600 15px var(--sans);padding:7px 12px;border-radius:9px;background:var(--bg2);border:1px solid var(--line)}
+
+/* projects */
+.projs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.proj{display:flex;flex-direction:column;background:var(--bg1);border:1px solid var(--line);border-radius:16px;padding:24px;transition:border-color .2s,opacity .8s,transform .8s}
+.proj:hover{border-color:var(--acc)}
+.proj .top{display:flex;justify-content:space-between;align-items:center;font:500 12px var(--mono);color:var(--muted)}
+.proj .top .arr{font-size:18px;color:var(--soft);transition:transform .2s}
+.proj:hover .arr{transform:translate(3px,-3px);color:var(--acc)}
+.proj h3{font:700 22px var(--sans);letter-spacing:-.02em;margin:18px 0 8px}
+.proj p{color:var(--soft);font-size:15.5px;margin:0 0 18px;flex:1}
+
+/* timeline */
+.tl{border-top:1px solid var(--line)}
+.tl-row{display:grid;grid-template-columns:220px 1fr auto;gap:28px;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.tl-row .when{font:500 14px var(--mono);color:var(--muted)}
+.tl-row h3{margin:0;font:700 24px var(--sans);letter-spacing:-.02em}
+.tl-row p{margin:4px 0 0;color:var(--soft)}
+.tl-row .tag{font:500 12px var(--mono);color:var(--acc);border:1px solid rgba(212,255,58,.35);padding:4px 10px;border-radius:999px;white-space:nowrap}
+
+/* cta */
+.cta{margin:130px 0 0;padding:90px 0 70px;border-top:1px solid var(--line);text-align:center}
+.cta h2{font-size:clamp(46px,8vw,112px);line-height:.95;margin:22px auto 26px;max-width:1000px}
+.cta p{color:var(--soft);font-size:20px;margin:0 auto 38px;max-width:600px}
+.cta .ctas{justify-content:center}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;font:13px var(--mono);color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.1,1),transform .8s cubic-bezier(.2,.7,.1,1),border-color .25s}
+.rv.in{opacity:1;transform:none}
+
+/* palette */
+.pal-bg{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:14vh 16px 0}
+.pal-bg.open{display:flex}
+.pal{width:100%;max-width:560px;background:var(--bg1);border:1px solid var(--line2);border-radius:14px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.7)}
+.pal input{width:100%;background:none;border:0;border-bottom:1px solid var(--line);padding:18px 20px;font:16px var(--sans);color:var(--ink);outline:0}
+.pal ul{list-style:none;margin:0;padding:8px;max-height:340px;overflow:auto}
+.pal li{display:flex;justify-content:space-between;align-items:center;padding:11px 12px;border-radius:9px;cursor:pointer;color:var(--soft);font-size:15px}
+.pal li small{font:12px var(--mono);color:var(--muted)}
+.pal li.on{background:var(--bg2);color:var(--ink)}
+.pal li.on small{color:var(--acc)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--acc);color:var(--acc-ink);font:600 14px var(--mono);padding:11px 18px;border-radius:10px;opacity:0;transition:all .25s;z-index:60;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+  .c-3,.c-2{grid-column:span 6}
+  .projs,.stack{grid-template-columns:1fr 1fr}
+}
+@media (max-width:680px){
+  .wrap{padding:0 18px}
+  .navlinks a.hide{display:none}
+  .navlinks{gap:16px}
+  .hero{padding-top:56px}
+  .lede{font-size:18px}
+  .nums{grid-template-columns:1fr 1fr}
+  .num:nth-child(3){padding-left:0;border-left:0}
+  .num:nth-child(n+3){border-top:1px solid var(--line)}
+  .num{padding:30px 16px 28px 0}.num+.num{padding-left:16px}
+  .nums .num:nth-child(3){padding-left:0;border-left:0}
+  .rules{grid-template-columns:1fr}
+  .rule,.rule:nth-child(even){padding:30px 0;border-left:0}
+  .projs,.stack{grid-template-columns:1fr}
+  .tl-row{grid-template-columns:1fr;gap:6px}
+  .tl-row .tag{justify-self:start}
+  .card{padding:22px}
+  .term-body{height:260px}
+  .cta .btn.pri{font-size:13.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  h1 .line span{transform:none}
+  .rv{opacity:1;transform:none}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<nav>
-  <a class="me" href="#">Aman Jha</a>
-  <div class="links">
-    <a href="#work">Work</a>
-    <a class="hide" href="#skills">Skills</a>
-    <a class="hide" href="#projects">Projects</a>
-    <a href="assets/Aman_Jha_Resume.pdf">Resume</a>
-    <a href="#contact">Contact</a>
+<nav id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>AJ</b>aman.jha</a>
+    <div class="navlinks">
+      <a class="hide" href="#work">Work</a>
+      <a class="hide" href="#how">How I work</a>
+      <a class="hide" href="#stack">Stack</a>
+      <a href="assets/Aman_Jha_Resume.pdf">Resume</a>
+      <span class="kbd" id="palBtn" title="Open command palette">⌘K</span>
+    </div>
   </div>
 </nav>
 
-<header class="hero">
-  <div class="kicker">Full Stack Engineer · MTS-1 at Profunnel · Mathura, India</div>
-  <h1>I write the code that connects<br>CRMs, <em>phones</em> and AI.</h1>
-  <p class="lede">For the last two years I've built Pronnel, a CRM, and Convarza, an AI calling product. My work includes a browser SIP dialer that runs inside HubSpot, Salesforce, Pipedrive, Zoho and Freshworks, more than 45 integration services, and most of the Angular app our customers use every day.</p>
-  <div class="cta">
-    <a class="btn solid" href="assets/Aman_Jha_Resume.pdf">Download resume</a>
-    <a class="btn" href="mailto:amanjhavdjs12tha@gmail.com">Email me</a>
-    <a class="btn" href="https://www.linkedin.com/in/aman-jha-07334a254/">LinkedIn</a>
-  </div>
+<main id="top">
+<div class="wrap">
+  <header class="hero">
+    <span class="status"><i></i>Full stack engineer · open to the right challenge</span>
+    <h1>
+      <span class="line"><span>45+ integrations.</span></span>
+      <span class="line"><span>5 CRMs.</span></span>
+      <span class="line"><span>One engineer</span></span>
+      <span class="line"><span class="acc">who doesn’t stop.</span></span>
+    </h1>
 
-  <div class="heat">
-    <div class="scroll"><svg viewBox="0 0 1111 93" role="img" aria-label="Commit activity heatmap"><style>.c0{fill:var(--h0)}.c1{fill:var(--h1)}.c2{fill:var(--h2)}.c3{fill:var(--h3)}.c4{fill:var(--h4)}</style><g class="lab"><text x="99" y="10">2025</text><text x="242" y="10">Apr</text><text x="385" y="10">Jul</text><text x="528" y="10">Oct</text><text x="671" y="10">2026</text><text x="814" y="10">Apr</text><text x="957" y="10">Jul</text></g><rect class="c2" x="0" y="16" width="9" height="9" rx="2"><title>4 commits on 04 Nov 2024</title></rect><rect class="c0" x="0" y="27" width="9" height="9" rx="2"><title>0 commits on 05 Nov 2024</title></rect><rect class="c0" x="0" y="38" width="9" height="9" rx="2"><title>0 commits on 06 Nov 2024</title></rect><rect class="c1" x="0" y="49" width="9" height="9" rx="2"><title>1 commit on 07 Nov 2024</title></rect><rect class="c0" x="0" y="60" width="9" height="9" rx="2"><title>0 commits on 08 Nov 2024</title></rect><rect class="c1" x="0" y="71" width="9" height="9" rx="2"><title>2 commits on 09 Nov 2024</title></rect><rect class="c0" x="0" y="82" width="9" height="9" rx="2"><title>0 commits on 10 Nov 2024</title></rect><rect class="c1" x="11" y="16" width="9" height="9" rx="2"><title>1 commit on 11 Nov 2024</title></rect><rect class="c2" x="11" y="27" width="9" height="9" rx="2"><title>4 commits on 12 Nov 2024</title></rect><rect class="c3" x="11" y="38" width="9" height="9" rx="2"><title>10 commits on 13 Nov 2024</title></rect><rect class="c1" x="11" y="49" width="9" height="9" rx="2"><title>2 commits on 14 Nov 2024</title></rect><rect class="c1" x="11" y="60" width="9" height="9" rx="2"><title>1 commit on 15 Nov 2024</title></rect><rect class="c1" x="11" y="71" width="9" height="9" rx="2"><title>1 commit on 16 Nov 2024</title></rect><rect class="c0" x="11" y="82" width="9" height="9" rx="2"><title>0 commits on 17 Nov 2024</title></rect><rect class="c0" x="22" y="16" width="9" height="9" rx="2"><title>0 commits on 18 Nov 2024</title></rect><rect class="c0" x="22" y="27" width="9" height="9" rx="2"><title>0 commits on 19 Nov 2024</title></rect><rect class="c1" x="22" y="38" width="9" height="9" rx="2"><title>2 commits on 20 Nov 2024</title></rect><rect class="c0" x="22" y="49" width="9" height="9" rx="2"><title>0 commits on 21 Nov 2024</title></rect><rect class="c0" x="22" y="60" width="9" height="9" rx="2"><title>0 commits on 22 Nov 2024</title></rect><rect class="c0" x="22" y="71" width="9" height="9" rx="2"><title>0 commits on 23 Nov 2024</title></rect><rect class="c0" x="22" y="82" width="9" height="9" rx="2"><title>0 commits on 24 Nov 2024</title></rect><rect class="c2" x="33" y="16" width="9" height="9" rx="2"><title>4 commits on 25 Nov 2024</title></rect><rect class="c3" x="33" y="27" width="9" height="9" rx="2"><title>6 commits on 26 Nov 2024</title></rect><rect class="c3" x="33" y="38" width="9" height="9" rx="2"><title>11 commits on 27 Nov 2024</title></rect><rect class="c2" x="33" y="49" width="9" height="9" rx="2"><title>4 commits on 28 Nov 2024</title></rect><rect class="c0" x="33" y="60" width="9" height="9" rx="2"><title>0 commits on 29 Nov 2024</title></rect><rect class="c0" x="33" y="71" width="9" height="9" rx="2"><title>0 commits on 30 Nov 2024</title></rect><rect class="c0" x="33" y="82" width="9" height="9" rx="2"><title>0 commits on 01 Dec 2024</title></rect><rect class="c3" x="44" y="16" width="9" height="9" rx="2"><title>8 commits on 02 Dec 2024</title></rect><rect class="c1" x="44" y="27" width="9" height="9" rx="2"><title>2 commits on 03 Dec 2024</title></rect><rect class="c3" x="44" y="38" width="9" height="9" rx="2"><title>11 commits on 04 Dec 2024</title></rect><rect class="c0" x="44" y="49" width="9" height="9" rx="2"><title>0 commits on 05 Dec 2024</title></rect><rect class="c0" x="44" y="60" width="9" height="9" rx="2"><title>0 commits on 06 Dec 2024</title></rect><rect class="c0" x="44" y="71" width="9" height="9" rx="2"><title>0 commits on 07 Dec 2024</title></rect><rect class="c0" x="44" y="82" width="9" height="9" rx="2"><title>0 commits on 08 Dec 2024</title></rect><rect class="c0" x="55" y="16" width="9" height="9" rx="2"><title>0 commits on 09 Dec 2024</title></rect><rect class="c0" x="55" y="27" width="9" height="9" rx="2"><title>0 commits on 10 Dec 2024</title></rect><rect class="c0" x="55" y="38" width="9" height="9" rx="2"><title>0 commits on 11 Dec 2024</title></rect><rect class="c0" x="55" y="49" width="9" height="9" rx="2"><title>0 commits on 12 Dec 2024</title></rect><rect class="c0" x="55" y="60" width="9" height="9" rx="2"><title>0 commits on 13 Dec 2024</title></rect><rect class="c0" x="55" y="71" width="9" height="9" rx="2"><title>0 commits on 14 Dec 2024</title></rect><rect class="c0" x="55" y="82" width="9" height="9" rx="2"><title>0 commits on 15 Dec 2024</title></rect><rect class="c0" x="66" y="16" width="9" height="9" rx="2"><title>0 commits on 16 Dec 2024</title></rect><rect class="c3" x="66" y="27" width="9" height="9" rx="2"><title>12 commits on 17 Dec 2024</title></rect><rect class="c3" x="66" y="38" width="9" height="9" rx="2"><title>6 commits on 18 Dec 2024</title></rect><rect class="c3" x="66" y="49" width="9" height="9" rx="2"><title>7 commits on 19 Dec 2024</title></rect><rect class="c2" x="66" y="60" width="9" height="9" rx="2"><title>5 commits on 20 Dec 2024</title></rect><rect class="c3" x="66" y="71" width="9" height="9" rx="2"><title>6 commits on 21 Dec 2024</title></rect><rect class="c0" x="66" y="82" width="9" height="9" rx="2"><title>0 commits on 22 Dec 2024</title></rect><rect class="c1" x="77" y="16" width="9" height="9" rx="2"><title>1 commit on 23 Dec 2024</title></rect><rect class="c2" x="77" y="27" width="9" height="9" rx="2"><title>4 commits on 24 Dec 2024</title></rect><rect class="c1" x="77" y="38" width="9" height="9" rx="2"><title>2 commits on 25 Dec 2024</title></rect><rect class="c0" x="77" y="49" width="9" height="9" rx="2"><title>0 commits on 26 Dec 2024</title></rect><rect class="c1" x="77" y="60" width="9" height="9" rx="2"><title>2 commits on 27 Dec 2024</title></rect><rect class="c0" x="77" y="71" width="9" height="9" rx="2"><title>0 commits on 28 Dec 2024</title></rect><rect class="c0" x="77" y="82" width="9" height="9" rx="2"><title>0 commits on 29 Dec 2024</title></rect><rect class="c0" x="88" y="16" width="9" height="9" rx="2"><title>0 commits on 30 Dec 2024</title></rect><rect class="c1" x="88" y="27" width="9" height="9" rx="2"><title>1 commit on 31 Dec 2024</title></rect><rect class="c0" x="88" y="38" width="9" height="9" rx="2"><title>0 commits on 01 Jan 2025</title></rect><rect class="c2" x="88" y="49" width="9" height="9" rx="2"><title>3 commits on 02 Jan 2025</title></rect><rect class="c0" x="88" y="60" width="9" height="9" rx="2"><title>0 commits on 03 Jan 2025</title></rect><rect class="c1" x="88" y="71" width="9" height="9" rx="2"><title>1 commit on 04 Jan 2025</title></rect><rect class="c0" x="88" y="82" width="9" height="9" rx="2"><title>0 commits on 05 Jan 2025</title></rect><rect class="c2" x="99" y="16" width="9" height="9" rx="2"><title>3 commits on 06 Jan 2025</title></rect><rect class="c0" x="99" y="27" width="9" height="9" rx="2"><title>0 commits on 07 Jan 2025</title></rect><rect class="c0" x="99" y="38" width="9" height="9" rx="2"><title>0 commits on 08 Jan 2025</title></rect><rect class="c2" x="99" y="49" width="9" height="9" rx="2"><title>3 commits on 09 Jan 2025</title></rect><rect class="c0" x="99" y="60" width="9" height="9" rx="2"><title>0 commits on 10 Jan 2025</title></rect><rect class="c0" x="99" y="71" width="9" height="9" rx="2"><title>0 commits on 11 Jan 2025</title></rect><rect class="c0" x="99" y="82" width="9" height="9" rx="2"><title>0 commits on 12 Jan 2025</title></rect><rect class="c0" x="110" y="16" width="9" height="9" rx="2"><title>0 commits on 13 Jan 2025</title></rect><rect class="c0" x="110" y="27" width="9" height="9" rx="2"><title>0 commits on 14 Jan 2025</title></rect><rect class="c0" x="110" y="38" width="9" height="9" rx="2"><title>0 commits on 15 Jan 2025</title></rect><rect class="c0" x="110" y="49" width="9" height="9" rx="2"><title>0 commits on 16 Jan 2025</title></rect><rect class="c1" x="110" y="60" width="9" height="9" rx="2"><title>1 commit on 17 Jan 2025</title></rect><rect class="c0" x="110" y="71" width="9" height="9" rx="2"><title>0 commits on 18 Jan 2025</title></rect><rect class="c0" x="110" y="82" width="9" height="9" rx="2"><title>0 commits on 19 Jan 2025</title></rect><rect class="c0" x="121" y="16" width="9" height="9" rx="2"><title>0 commits on 20 Jan 2025</title></rect><rect class="c0" x="121" y="27" width="9" height="9" rx="2"><title>0 commits on 21 Jan 2025</title></rect><rect class="c0" x="121" y="38" width="9" height="9" rx="2"><title>0 commits on 22 Jan 2025</title></rect><rect class="c0" x="121" y="49" width="9" height="9" rx="2"><title>0 commits on 23 Jan 2025</title></rect><rect class="c1" x="121" y="60" width="9" height="9" rx="2"><title>1 commit on 24 Jan 2025</title></rect><rect class="c0" x="121" y="71" width="9" height="9" rx="2"><title>0 commits on 25 Jan 2025</title></rect><rect class="c0" x="121" y="82" width="9" height="9" rx="2"><title>0 commits on 26 Jan 2025</title></rect><rect class="c0" x="132" y="16" width="9" height="9" rx="2"><title>0 commits on 27 Jan 2025</title></rect><rect class="c1" x="132" y="27" width="9" height="9" rx="2"><title>2 commits on 28 Jan 2025</title></rect><rect class="c1" x="132" y="38" width="9" height="9" rx="2"><title>2 commits on 29 Jan 2025</title></rect><rect class="c2" x="132" y="49" width="9" height="9" rx="2"><title>5 commits on 30 Jan 2025</title></rect><rect class="c0" x="132" y="60" width="9" height="9" rx="2"><title>0 commits on 31 Jan 2025</title></rect><rect class="c0" x="132" y="71" width="9" height="9" rx="2"><title>0 commits on 01 Feb 2025</title></rect><rect class="c0" x="132" y="82" width="9" height="9" rx="2"><title>0 commits on 02 Feb 2025</title></rect><rect class="c3" x="143" y="16" width="9" height="9" rx="2"><title>6 commits on 03 Feb 2025</title></rect><rect class="c1" x="143" y="27" width="9" height="9" rx="2"><title>1 commit on 04 Feb 2025</title></rect><rect class="c1" x="143" y="38" width="9" height="9" rx="2"><title>1 commit on 05 Feb 2025</title></rect><rect class="c0" x="143" y="49" width="9" height="9" rx="2"><title>0 commits on 06 Feb 2025</title></rect><rect class="c0" x="143" y="60" width="9" height="9" rx="2"><title>0 commits on 07 Feb 2025</title></rect><rect class="c2" x="143" y="71" width="9" height="9" rx="2"><title>5 commits on 08 Feb 2025</title></rect><rect class="c0" x="143" y="82" width="9" height="9" rx="2"><title>0 commits on 09 Feb 2025</title></rect><rect class="c1" x="154" y="16" width="9" height="9" rx="2"><title>2 commits on 10 Feb 2025</title></rect><rect class="c1" x="154" y="27" width="9" height="9" rx="2"><title>1 commit on 11 Feb 2025</title></rect><rect class="c0" x="154" y="38" width="9" height="9" rx="2"><title>0 commits on 12 Feb 2025</title></rect><rect class="c1" x="154" y="49" width="9" height="9" rx="2"><title>1 commit on 13 Feb 2025</title></rect><rect class="c3" x="154" y="60" width="9" height="9" rx="2"><title>6 commits on 14 Feb 2025</title></rect><rect class="c0" x="154" y="71" width="9" height="9" rx="2"><title>0 commits on 15 Feb 2025</title></rect><rect class="c0" x="154" y="82" width="9" height="9" rx="2"><title>0 commits on 16 Feb 2025</title></rect><rect class="c2" x="165" y="16" width="9" height="9" rx="2"><title>3 commits on 17 Feb 2025</title></rect><rect class="c1" x="165" y="27" width="9" height="9" rx="2"><title>1 commit on 18 Feb 2025</title></rect><rect class="c1" x="165" y="38" width="9" height="9" rx="2"><title>2 commits on 19 Feb 2025</title></rect><rect class="c2" x="165" y="49" width="9" height="9" rx="2"><title>4 commits on 20 Feb 2025</title></rect><rect class="c0" x="165" y="60" width="9" height="9" rx="2"><title>0 commits on 21 Feb 2025</title></rect><rect class="c0" x="165" y="71" width="9" height="9" rx="2"><title>0 commits on 22 Feb 2025</title></rect><rect class="c2" x="165" y="82" width="9" height="9" rx="2"><title>4 commits on 23 Feb 2025</title></rect><rect class="c2" x="176" y="16" width="9" height="9" rx="2"><title>3 commits on 24 Feb 2025</title></rect><rect class="c0" x="176" y="27" width="9" height="9" rx="2"><title>0 commits on 25 Feb 2025</title></rect><rect class="c0" x="176" y="38" width="9" height="9" rx="2"><title>0 commits on 26 Feb 2025</title></rect><rect class="c0" x="176" y="49" width="9" height="9" rx="2"><title>0 commits on 27 Feb 2025</title></rect><rect class="c0" x="176" y="60" width="9" height="9" rx="2"><title>0 commits on 28 Feb 2025</title></rect><rect class="c0" x="176" y="71" width="9" height="9" rx="2"><title>0 commits on 01 Mar 2025</title></rect><rect class="c0" x="176" y="82" width="9" height="9" rx="2"><title>0 commits on 02 Mar 2025</title></rect><rect class="c0" x="187" y="16" width="9" height="9" rx="2"><title>0 commits on 03 Mar 2025</title></rect><rect class="c0" x="187" y="27" width="9" height="9" rx="2"><title>0 commits on 04 Mar 2025</title></rect><rect class="c0" x="187" y="38" width="9" height="9" rx="2"><title>0 commits on 05 Mar 2025</title></rect><rect class="c0" x="187" y="49" width="9" height="9" rx="2"><title>0 commits on 06 Mar 2025</title></rect><rect class="c0" x="187" y="60" width="9" height="9" rx="2"><title>0 commits on 07 Mar 2025</title></rect><rect class="c0" x="187" y="71" width="9" height="9" rx="2"><title>0 commits on 08 Mar 2025</title></rect><rect class="c0" x="187" y="82" width="9" height="9" rx="2"><title>0 commits on 09 Mar 2025</title></rect><rect class="c0" x="198" y="16" width="9" height="9" rx="2"><title>0 commits on 10 Mar 2025</title></rect><rect class="c1" x="198" y="27" width="9" height="9" rx="2"><title>1 commit on 11 Mar 2025</title></rect><rect class="c1" x="198" y="38" width="9" height="9" rx="2"><title>1 commit on 12 Mar 2025</title></rect><rect class="c1" x="198" y="49" width="9" height="9" rx="2"><title>2 commits on 13 Mar 2025</title></rect><rect class="c0" x="198" y="60" width="9" height="9" rx="2"><title>0 commits on 14 Mar 2025</title></rect><rect class="c0" x="198" y="71" width="9" height="9" rx="2"><title>0 commits on 15 Mar 2025</title></rect><rect class="c0" x="198" y="82" width="9" height="9" rx="2"><title>0 commits on 16 Mar 2025</title></rect><rect class="c0" x="209" y="16" width="9" height="9" rx="2"><title>0 commits on 17 Mar 2025</title></rect><rect class="c0" x="209" y="27" width="9" height="9" rx="2"><title>0 commits on 18 Mar 2025</title></rect><rect class="c1" x="209" y="38" width="9" height="9" rx="2"><title>1 commit on 19 Mar 2025</title></rect><rect class="c0" x="209" y="49" width="9" height="9" rx="2"><title>0 commits on 20 Mar 2025</title></rect><rect class="c0" x="209" y="60" width="9" height="9" rx="2"><title>0 commits on 21 Mar 2025</title></rect><rect class="c2" x="209" y="71" width="9" height="9" rx="2"><title>5 commits on 22 Mar 2025</title></rect><rect class="c0" x="209" y="82" width="9" height="9" rx="2"><title>0 commits on 23 Mar 2025</title></rect><rect class="c3" x="220" y="16" width="9" height="9" rx="2"><title>7 commits on 24 Mar 2025</title></rect><rect class="c1" x="220" y="27" width="9" height="9" rx="2"><title>1 commit on 25 Mar 2025</title></rect><rect class="c3" x="220" y="38" width="9" height="9" rx="2"><title>7 commits on 26 Mar 2025</title></rect><rect class="c0" x="220" y="49" width="9" height="9" rx="2"><title>0 commits on 27 Mar 2025</title></rect><rect class="c2" x="220" y="60" width="9" height="9" rx="2"><title>5 commits on 28 Mar 2025</title></rect><rect class="c4" x="220" y="71" width="9" height="9" rx="2"><title>117 commits on 29 Mar 2025</title></rect><rect class="c0" x="220" y="82" width="9" height="9" rx="2"><title>0 commits on 30 Mar 2025</title></rect><rect class="c1" x="231" y="16" width="9" height="9" rx="2"><title>1 commit on 31 Mar 2025</title></rect><rect class="c1" x="231" y="27" width="9" height="9" rx="2"><title>1 commit on 01 Apr 2025</title></rect><rect class="c3" x="231" y="38" width="9" height="9" rx="2"><title>8 commits on 02 Apr 2025</title></rect><rect class="c3" x="231" y="49" width="9" height="9" rx="2"><title>12 commits on 03 Apr 2025</title></rect><rect class="c1" x="231" y="60" width="9" height="9" rx="2"><title>1 commit on 04 Apr 2025</title></rect><rect class="c0" x="231" y="71" width="9" height="9" rx="2"><title>0 commits on 05 Apr 2025</title></rect><rect class="c0" x="231" y="82" width="9" height="9" rx="2"><title>0 commits on 06 Apr 2025</title></rect><rect class="c0" x="242" y="16" width="9" height="9" rx="2"><title>0 commits on 07 Apr 2025</title></rect><rect class="c0" x="242" y="27" width="9" height="9" rx="2"><title>0 commits on 08 Apr 2025</title></rect><rect class="c0" x="242" y="38" width="9" height="9" rx="2"><title>0 commits on 09 Apr 2025</title></rect><rect class="c0" x="242" y="49" width="9" height="9" rx="2"><title>0 commits on 10 Apr 2025</title></rect><rect class="c0" x="242" y="60" width="9" height="9" rx="2"><title>0 commits on 11 Apr 2025</title></rect><rect class="c0" x="242" y="71" width="9" height="9" rx="2"><title>0 commits on 12 Apr 2025</title></rect><rect class="c0" x="242" y="82" width="9" height="9" rx="2"><title>0 commits on 13 Apr 2025</title></rect><rect class="c0" x="253" y="16" width="9" height="9" rx="2"><title>0 commits on 14 Apr 2025</title></rect><rect class="c0" x="253" y="27" width="9" height="9" rx="2"><title>0 commits on 15 Apr 2025</title></rect><rect class="c1" x="253" y="38" width="9" height="9" rx="2"><title>2 commits on 16 Apr 2025</title></rect><rect class="c3" x="253" y="49" width="9" height="9" rx="2"><title>8 commits on 17 Apr 2025</title></rect><rect class="c1" x="253" y="60" width="9" height="9" rx="2"><title>1 commit on 18 Apr 2025</title></rect><rect class="c4" x="253" y="71" width="9" height="9" rx="2"><title>55 commits on 19 Apr 2025</title></rect><rect class="c0" x="253" y="82" width="9" height="9" rx="2"><title>0 commits on 20 Apr 2025</title></rect><rect class="c3" x="264" y="16" width="9" height="9" rx="2"><title>7 commits on 21 Apr 2025</title></rect><rect class="c2" x="264" y="27" width="9" height="9" rx="2"><title>3 commits on 22 Apr 2025</title></rect><rect class="c0" x="264" y="38" width="9" height="9" rx="2"><title>0 commits on 23 Apr 2025</title></rect><rect class="c0" x="264" y="49" width="9" height="9" rx="2"><title>0 commits on 24 Apr 2025</title></rect><rect class="c0" x="264" y="60" width="9" height="9" rx="2"><title>0 commits on 25 Apr 2025</title></rect><rect class="c0" x="264" y="71" width="9" height="9" rx="2"><title>0 commits on 26 Apr 2025</title></rect><rect class="c0" x="264" y="82" width="9" height="9" rx="2"><title>0 commits on 27 Apr 2025</title></rect><rect class="c2" x="275" y="16" width="9" height="9" rx="2"><title>3 commits on 28 Apr 2025</title></rect><rect class="c3" x="275" y="27" width="9" height="9" rx="2"><title>6 commits on 29 Apr 2025</title></rect><rect class="c2" x="275" y="38" width="9" height="9" rx="2"><title>3 commits on 30 Apr 2025</title></rect><rect class="c0" x="275" y="49" width="9" height="9" rx="2"><title>0 commits on 01 May 2025</title></rect><rect class="c0" x="275" y="60" width="9" height="9" rx="2"><title>0 commits on 02 May 2025</title></rect><rect class="c0" x="275" y="71" width="9" height="9" rx="2"><title>0 commits on 03 May 2025</title></rect><rect class="c0" x="275" y="82" width="9" height="9" rx="2"><title>0 commits on 04 May 2025</title></rect><rect class="c3" x="286" y="16" width="9" height="9" rx="2"><title>11 commits on 05 May 2025</title></rect><rect class="c2" x="286" y="27" width="9" height="9" rx="2"><title>4 commits on 06 May 2025</title></rect><rect class="c0" x="286" y="38" width="9" height="9" rx="2"><title>0 commits on 07 May 2025</title></rect><rect class="c0" x="286" y="49" width="9" height="9" rx="2"><title>0 commits on 08 May 2025</title></rect><rect class="c3" x="286" y="60" width="9" height="9" rx="2"><title>7 commits on 09 May 2025</title></rect><rect class="c2" x="286" y="71" width="9" height="9" rx="2"><title>4 commits on 10 May 2025</title></rect><rect class="c0" x="286" y="82" width="9" height="9" rx="2"><title>0 commits on 11 May 2025</title></rect><rect class="c0" x="297" y="16" width="9" height="9" rx="2"><title>0 commits on 12 May 2025</title></rect><rect class="c0" x="297" y="27" width="9" height="9" rx="2"><title>0 commits on 13 May 2025</title></rect><rect class="c2" x="297" y="38" width="9" height="9" rx="2"><title>5 commits on 14 May 2025</title></rect><rect class="c0" x="297" y="49" width="9" height="9" rx="2"><title>0 commits on 15 May 2025</title></rect><rect class="c0" x="297" y="60" width="9" height="9" rx="2"><title>0 commits on 16 May 2025</title></rect><rect class="c0" x="297" y="71" width="9" height="9" rx="2"><title>0 commits on 17 May 2025</title></rect><rect class="c0" x="297" y="82" width="9" height="9" rx="2"><title>0 commits on 18 May 2025</title></rect><rect class="c0" x="308" y="16" width="9" height="9" rx="2"><title>0 commits on 19 May 2025</title></rect><rect class="c1" x="308" y="27" width="9" height="9" rx="2"><title>1 commit on 20 May 2025</title></rect><rect class="c0" x="308" y="38" width="9" height="9" rx="2"><title>0 commits on 21 May 2025</title></rect><rect class="c0" x="308" y="49" width="9" height="9" rx="2"><title>0 commits on 22 May 2025</title></rect><rect class="c2" x="308" y="60" width="9" height="9" rx="2"><title>4 commits on 23 May 2025</title></rect><rect class="c3" x="308" y="71" width="9" height="9" rx="2"><title>6 commits on 24 May 2025</title></rect><rect class="c0" x="308" y="82" width="9" height="9" rx="2"><title>0 commits on 25 May 2025</title></rect><rect class="c2" x="319" y="16" width="9" height="9" rx="2"><title>4 commits on 26 May 2025</title></rect><rect class="c2" x="319" y="27" width="9" height="9" rx="2"><title>5 commits on 27 May 2025</title></rect><rect class="c1" x="319" y="38" width="9" height="9" rx="2"><title>1 commit on 28 May 2025</title></rect><rect class="c2" x="319" y="49" width="9" height="9" rx="2"><title>3 commits on 29 May 2025</title></rect><rect class="c0" x="319" y="60" width="9" height="9" rx="2"><title>0 commits on 30 May 2025</title></rect><rect class="c1" x="319" y="71" width="9" height="9" rx="2"><title>1 commit on 31 May 2025</title></rect><rect class="c0" x="319" y="82" width="9" height="9" rx="2"><title>0 commits on 01 Jun 2025</title></rect><rect class="c1" x="330" y="16" width="9" height="9" rx="2"><title>2 commits on 02 Jun 2025</title></rect><rect class="c3" x="330" y="27" width="9" height="9" rx="2"><title>9 commits on 03 Jun 2025</title></rect><rect class="c3" x="330" y="38" width="9" height="9" rx="2"><title>8 commits on 04 Jun 2025</title></rect><rect class="c1" x="330" y="49" width="9" height="9" rx="2"><title>1 commit on 05 Jun 2025</title></rect><rect class="c1" x="330" y="60" width="9" height="9" rx="2"><title>1 commit on 06 Jun 2025</title></rect><rect class="c2" x="330" y="71" width="9" height="9" rx="2"><title>4 commits on 07 Jun 2025</title></rect><rect class="c0" x="330" y="82" width="9" height="9" rx="2"><title>0 commits on 08 Jun 2025</title></rect><rect class="c0" x="341" y="16" width="9" height="9" rx="2"><title>0 commits on 09 Jun 2025</title></rect><rect class="c0" x="341" y="27" width="9" height="9" rx="2"><title>0 commits on 10 Jun 2025</title></rect><rect class="c2" x="341" y="38" width="9" height="9" rx="2"><title>3 commits on 11 Jun 2025</title></rect><rect class="c3" x="341" y="49" width="9" height="9" rx="2"><title>7 commits on 12 Jun 2025</title></rect><rect class="c0" x="341" y="60" width="9" height="9" rx="2"><title>0 commits on 13 Jun 2025</title></rect><rect class="c1" x="341" y="71" width="9" height="9" rx="2"><title>1 commit on 14 Jun 2025</title></rect><rect class="c0" x="341" y="82" width="9" height="9" rx="2"><title>0 commits on 15 Jun 2025</title></rect><rect class="c0" x="352" y="16" width="9" height="9" rx="2"><title>0 commits on 16 Jun 2025</title></rect><rect class="c0" x="352" y="27" width="9" height="9" rx="2"><title>0 commits on 17 Jun 2025</title></rect><rect class="c2" x="352" y="38" width="9" height="9" rx="2"><title>4 commits on 18 Jun 2025</title></rect><rect class="c1" x="352" y="49" width="9" height="9" rx="2"><title>1 commit on 19 Jun 2025</title></rect><rect class="c1" x="352" y="60" width="9" height="9" rx="2"><title>1 commit on 20 Jun 2025</title></rect><rect class="c0" x="352" y="71" width="9" height="9" rx="2"><title>0 commits on 21 Jun 2025</title></rect><rect class="c0" x="352" y="82" width="9" height="9" rx="2"><title>0 commits on 22 Jun 2025</title></rect><rect class="c0" x="363" y="16" width="9" height="9" rx="2"><title>0 commits on 23 Jun 2025</title></rect><rect class="c0" x="363" y="27" width="9" height="9" rx="2"><title>0 commits on 24 Jun 2025</title></rect><rect class="c0" x="363" y="38" width="9" height="9" rx="2"><title>0 commits on 25 Jun 2025</title></rect><rect class="c0" x="363" y="49" width="9" height="9" rx="2"><title>0 commits on 26 Jun 2025</title></rect><rect class="c2" x="363" y="60" width="9" height="9" rx="2"><title>5 commits on 27 Jun 2025</title></rect><rect class="c0" x="363" y="71" width="9" height="9" rx="2"><title>0 commits on 28 Jun 2025</title></rect><rect class="c0" x="363" y="82" width="9" height="9" rx="2"><title>0 commits on 29 Jun 2025</title></rect><rect class="c1" x="374" y="16" width="9" height="9" rx="2"><title>1 commit on 30 Jun 2025</title></rect><rect class="c0" x="374" y="27" width="9" height="9" rx="2"><title>0 commits on 01 Jul 2025</title></rect><rect class="c0" x="374" y="38" width="9" height="9" rx="2"><title>0 commits on 02 Jul 2025</title></rect><rect class="c0" x="374" y="49" width="9" height="9" rx="2"><title>0 commits on 03 Jul 2025</title></rect><rect class="c0" x="374" y="60" width="9" height="9" rx="2"><title>0 commits on 04 Jul 2025</title></rect><rect class="c0" x="374" y="71" width="9" height="9" rx="2"><title>0 commits on 05 Jul 2025</title></rect><rect class="c0" x="374" y="82" width="9" height="9" rx="2"><title>0 commits on 06 Jul 2025</title></rect><rect class="c1" x="385" y="16" width="9" height="9" rx="2"><title>1 commit on 07 Jul 2025</title></rect><rect class="c0" x="385" y="27" width="9" height="9" rx="2"><title>0 commits on 08 Jul 2025</title></rect><rect class="c2" x="385" y="38" width="9" height="9" rx="2"><title>4 commits on 09 Jul 2025</title></rect><rect class="c2" x="385" y="49" width="9" height="9" rx="2"><title>4 commits on 10 Jul 2025</title></rect><rect class="c1" x="385" y="60" width="9" height="9" rx="2"><title>2 commits on 11 Jul 2025</title></rect><rect class="c3" x="385" y="71" width="9" height="9" rx="2"><title>7 commits on 12 Jul 2025</title></rect><rect class="c0" x="385" y="82" width="9" height="9" rx="2"><title>0 commits on 13 Jul 2025</title></rect><rect class="c0" x="396" y="16" width="9" height="9" rx="2"><title>0 commits on 14 Jul 2025</title></rect><rect class="c2" x="396" y="27" width="9" height="9" rx="2"><title>4 commits on 15 Jul 2025</title></rect><rect class="c1" x="396" y="38" width="9" height="9" rx="2"><title>1 commit on 16 Jul 2025</title></rect><rect class="c3" x="396" y="49" width="9" height="9" rx="2"><title>7 commits on 17 Jul 2025</title></rect><rect class="c3" x="396" y="60" width="9" height="9" rx="2"><title>9 commits on 18 Jul 2025</title></rect><rect class="c3" x="396" y="71" width="9" height="9" rx="2"><title>9 commits on 19 Jul 2025</title></rect><rect class="c2" x="396" y="82" width="9" height="9" rx="2"><title>3 commits on 20 Jul 2025</title></rect><rect class="c3" x="407" y="16" width="9" height="9" rx="2"><title>9 commits on 21 Jul 2025</title></rect><rect class="c3" x="407" y="27" width="9" height="9" rx="2"><title>8 commits on 22 Jul 2025</title></rect><rect class="c3" x="407" y="38" width="9" height="9" rx="2"><title>6 commits on 23 Jul 2025</title></rect><rect class="c2" x="407" y="49" width="9" height="9" rx="2"><title>4 commits on 24 Jul 2025</title></rect><rect class="c2" x="407" y="60" width="9" height="9" rx="2"><title>3 commits on 25 Jul 2025</title></rect><rect class="c0" x="407" y="71" width="9" height="9" rx="2"><title>0 commits on 26 Jul 2025</title></rect><rect class="c0" x="407" y="82" width="9" height="9" rx="2"><title>0 commits on 27 Jul 2025</title></rect><rect class="c2" x="418" y="16" width="9" height="9" rx="2"><title>3 commits on 28 Jul 2025</title></rect><rect class="c2" x="418" y="27" width="9" height="9" rx="2"><title>3 commits on 29 Jul 2025</title></rect><rect class="c0" x="418" y="38" width="9" height="9" rx="2"><title>0 commits on 30 Jul 2025</title></rect><rect class="c3" x="418" y="49" width="9" height="9" rx="2"><title>10 commits on 31 Jul 2025</title></rect><rect class="c4" x="418" y="60" width="9" height="9" rx="2"><title>155 commits on 01 Aug 2025</title></rect><rect class="c3" x="418" y="71" width="9" height="9" rx="2"><title>7 commits on 02 Aug 2025</title></rect><rect class="c1" x="418" y="82" width="9" height="9" rx="2"><title>1 commit on 03 Aug 2025</title></rect><rect class="c0" x="429" y="16" width="9" height="9" rx="2"><title>0 commits on 04 Aug 2025</title></rect><rect class="c2" x="429" y="27" width="9" height="9" rx="2"><title>4 commits on 05 Aug 2025</title></rect><rect class="c2" x="429" y="38" width="9" height="9" rx="2"><title>3 commits on 06 Aug 2025</title></rect><rect class="c3" x="429" y="49" width="9" height="9" rx="2"><title>8 commits on 07 Aug 2025</title></rect><rect class="c2" x="429" y="60" width="9" height="9" rx="2"><title>3 commits on 08 Aug 2025</title></rect><rect class="c0" x="429" y="71" width="9" height="9" rx="2"><title>0 commits on 09 Aug 2025</title></rect><rect class="c0" x="429" y="82" width="9" height="9" rx="2"><title>0 commits on 10 Aug 2025</title></rect><rect class="c1" x="440" y="16" width="9" height="9" rx="2"><title>1 commit on 11 Aug 2025</title></rect><rect class="c2" x="440" y="27" width="9" height="9" rx="2"><title>4 commits on 12 Aug 2025</title></rect><rect class="c1" x="440" y="38" width="9" height="9" rx="2"><title>1 commit on 13 Aug 2025</title></rect><rect class="c2" x="440" y="49" width="9" height="9" rx="2"><title>4 commits on 14 Aug 2025</title></rect><rect class="c0" x="440" y="60" width="9" height="9" rx="2"><title>0 commits on 15 Aug 2025</title></rect><rect class="c0" x="440" y="71" width="9" height="9" rx="2"><title>0 commits on 16 Aug 2025</title></rect><rect class="c0" x="440" y="82" width="9" height="9" rx="2"><title>0 commits on 17 Aug 2025</title></rect><rect class="c0" x="451" y="16" width="9" height="9" rx="2"><title>0 commits on 18 Aug 2025</title></rect><rect class="c2" x="451" y="27" width="9" height="9" rx="2"><title>3 commits on 19 Aug 2025</title></rect><rect class="c3" x="451" y="38" width="9" height="9" rx="2"><title>8 commits on 20 Aug 2025</title></rect><rect class="c3" x="451" y="49" width="9" height="9" rx="2"><title>11 commits on 21 Aug 2025</title></rect><rect class="c1" x="451" y="60" width="9" height="9" rx="2"><title>2 commits on 22 Aug 2025</title></rect><rect class="c3" x="451" y="71" width="9" height="9" rx="2"><title>7 commits on 23 Aug 2025</title></rect><rect class="c0" x="451" y="82" width="9" height="9" rx="2"><title>0 commits on 24 Aug 2025</title></rect><rect class="c0" x="462" y="16" width="9" height="9" rx="2"><title>0 commits on 25 Aug 2025</title></rect><rect class="c2" x="462" y="27" width="9" height="9" rx="2"><title>4 commits on 26 Aug 2025</title></rect><rect class="c0" x="462" y="38" width="9" height="9" rx="2"><title>0 commits on 27 Aug 2025</title></rect><rect class="c2" x="462" y="49" width="9" height="9" rx="2"><title>4 commits on 28 Aug 2025</title></rect><rect class="c2" x="462" y="60" width="9" height="9" rx="2"><title>4 commits on 29 Aug 2025</title></rect><rect class="c0" x="462" y="71" width="9" height="9" rx="2"><title>0 commits on 30 Aug 2025</title></rect><rect class="c0" x="462" y="82" width="9" height="9" rx="2"><title>0 commits on 31 Aug 2025</title></rect><rect class="c0" x="473" y="16" width="9" height="9" rx="2"><title>0 commits on 01 Sep 2025</title></rect><rect class="c3" x="473" y="27" width="9" height="9" rx="2"><title>6 commits on 02 Sep 2025</title></rect><rect class="c0" x="473" y="38" width="9" height="9" rx="2"><title>0 commits on 03 Sep 2025</title></rect><rect class="c1" x="473" y="49" width="9" height="9" rx="2"><title>1 commit on 04 Sep 2025</title></rect><rect class="c0" x="473" y="60" width="9" height="9" rx="2"><title>0 commits on 05 Sep 2025</title></rect><rect class="c0" x="473" y="71" width="9" height="9" rx="2"><title>0 commits on 06 Sep 2025</title></rect><rect class="c0" x="473" y="82" width="9" height="9" rx="2"><title>0 commits on 07 Sep 2025</title></rect><rect class="c0" x="484" y="16" width="9" height="9" rx="2"><title>0 commits on 08 Sep 2025</title></rect><rect class="c4" x="484" y="27" width="9" height="9" rx="2"><title>13 commits on 09 Sep 2025</title></rect><rect class="c2" x="484" y="38" width="9" height="9" rx="2"><title>5 commits on 10 Sep 2025</title></rect><rect class="c4" x="484" y="49" width="9" height="9" rx="2"><title>36 commits on 11 Sep 2025</title></rect><rect class="c2" x="484" y="60" width="9" height="9" rx="2"><title>3 commits on 12 Sep 2025</title></rect><rect class="c3" x="484" y="71" width="9" height="9" rx="2"><title>10 commits on 13 Sep 2025</title></rect><rect class="c0" x="484" y="82" width="9" height="9" rx="2"><title>0 commits on 14 Sep 2025</title></rect><rect class="c4" x="495" y="16" width="9" height="9" rx="2"><title>15 commits on 15 Sep 2025</title></rect><rect class="c4" x="495" y="27" width="9" height="9" rx="2"><title>14 commits on 16 Sep 2025</title></rect><rect class="c4" x="495" y="38" width="9" height="9" rx="2"><title>35 commits on 17 Sep 2025</title></rect><rect class="c2" x="495" y="49" width="9" height="9" rx="2"><title>3 commits on 18 Sep 2025</title></rect><rect class="c3" x="495" y="60" width="9" height="9" rx="2"><title>7 commits on 19 Sep 2025</title></rect><rect class="c0" x="495" y="71" width="9" height="9" rx="2"><title>0 commits on 20 Sep 2025</title></rect><rect class="c4" x="495" y="82" width="9" height="9" rx="2"><title>15 commits on 21 Sep 2025</title></rect><rect class="c4" x="506" y="16" width="9" height="9" rx="2"><title>13 commits on 22 Sep 2025</title></rect><rect class="c2" x="506" y="27" width="9" height="9" rx="2"><title>3 commits on 23 Sep 2025</title></rect><rect class="c1" x="506" y="38" width="9" height="9" rx="2"><title>2 commits on 24 Sep 2025</title></rect><rect class="c3" x="506" y="49" width="9" height="9" rx="2"><title>6 commits on 25 Sep 2025</title></rect><rect class="c4" x="506" y="60" width="9" height="9" rx="2"><title>30 commits on 26 Sep 2025</title></rect><rect class="c3" x="506" y="71" width="9" height="9" rx="2"><title>8 commits on 27 Sep 2025</title></rect><rect class="c4" x="506" y="82" width="9" height="9" rx="2"><title>18 commits on 28 Sep 2025</title></rect><rect class="c1" x="517" y="16" width="9" height="9" rx="2"><title>1 commit on 29 Sep 2025</title></rect><rect class="c2" x="517" y="27" width="9" height="9" rx="2"><title>4 commits on 30 Sep 2025</title></rect><rect class="c3" x="517" y="38" width="9" height="9" rx="2"><title>10 commits on 01 Oct 2025</title></rect><rect class="c0" x="517" y="49" width="9" height="9" rx="2"><title>0 commits on 02 Oct 2025</title></rect><rect class="c2" x="517" y="60" width="9" height="9" rx="2"><title>3 commits on 03 Oct 2025</title></rect><rect class="c2" x="517" y="71" width="9" height="9" rx="2"><title>5 commits on 04 Oct 2025</title></rect><rect class="c1" x="517" y="82" width="9" height="9" rx="2"><title>1 commit on 05 Oct 2025</title></rect><rect class="c3" x="528" y="16" width="9" height="9" rx="2"><title>12 commits on 06 Oct 2025</title></rect><rect class="c4" x="528" y="27" width="9" height="9" rx="2"><title>15 commits on 07 Oct 2025</title></rect><rect class="c2" x="528" y="38" width="9" height="9" rx="2"><title>3 commits on 08 Oct 2025</title></rect><rect class="c0" x="528" y="49" width="9" height="9" rx="2"><title>0 commits on 09 Oct 2025</title></rect><rect class="c1" x="528" y="60" width="9" height="9" rx="2"><title>2 commits on 10 Oct 2025</title></rect><rect class="c1" x="528" y="71" width="9" height="9" rx="2"><title>1 commit on 11 Oct 2025</title></rect><rect class="c0" x="528" y="82" width="9" height="9" rx="2"><title>0 commits on 12 Oct 2025</title></rect><rect class="c1" x="539" y="16" width="9" height="9" rx="2"><title>1 commit on 13 Oct 2025</title></rect><rect class="c2" x="539" y="27" width="9" height="9" rx="2"><title>4 commits on 14 Oct 2025</title></rect><rect class="c1" x="539" y="38" width="9" height="9" rx="2"><title>2 commits on 15 Oct 2025</title></rect><rect class="c3" x="539" y="49" width="9" height="9" rx="2"><title>9 commits on 16 Oct 2025</title></rect><rect class="c2" x="539" y="60" width="9" height="9" rx="2"><title>5 commits on 17 Oct 2025</title></rect><rect class="c0" x="539" y="71" width="9" height="9" rx="2"><title>0 commits on 18 Oct 2025</title></rect><rect class="c0" x="539" y="82" width="9" height="9" rx="2"><title>0 commits on 19 Oct 2025</title></rect><rect class="c0" x="550" y="16" width="9" height="9" rx="2"><title>0 commits on 20 Oct 2025</title></rect><rect class="c0" x="550" y="27" width="9" height="9" rx="2"><title>0 commits on 21 Oct 2025</title></rect><rect class="c0" x="550" y="38" width="9" height="9" rx="2"><title>0 commits on 22 Oct 2025</title></rect><rect class="c0" x="550" y="49" width="9" height="9" rx="2"><title>0 commits on 23 Oct 2025</title></rect><rect class="c0" x="550" y="60" width="9" height="9" rx="2"><title>0 commits on 24 Oct 2025</title></rect><rect class="c4" x="550" y="71" width="9" height="9" rx="2"><title>41 commits on 25 Oct 2025</title></rect><rect class="c0" x="550" y="82" width="9" height="9" rx="2"><title>0 commits on 26 Oct 2025</title></rect><rect class="c2" x="561" y="16" width="9" height="9" rx="2"><title>4 commits on 27 Oct 2025</title></rect><rect class="c3" x="561" y="27" width="9" height="9" rx="2"><title>9 commits on 28 Oct 2025</title></rect><rect class="c0" x="561" y="38" width="9" height="9" rx="2"><title>0 commits on 29 Oct 2025</title></rect><rect class="c4" x="561" y="49" width="9" height="9" rx="2"><title>14 commits on 30 Oct 2025</title></rect><rect class="c4" x="561" y="60" width="9" height="9" rx="2"><title>20 commits on 31 Oct 2025</title></rect><rect class="c4" x="561" y="71" width="9" height="9" rx="2"><title>14 commits on 01 Nov 2025</title></rect><rect class="c3" x="561" y="82" width="9" height="9" rx="2"><title>9 commits on 02 Nov 2025</title></rect><rect class="c4" x="572" y="16" width="9" height="9" rx="2"><title>18 commits on 03 Nov 2025</title></rect><rect class="c3" x="572" y="27" width="9" height="9" rx="2"><title>6 commits on 04 Nov 2025</title></rect><rect class="c2" x="572" y="38" width="9" height="9" rx="2"><title>4 commits on 05 Nov 2025</title></rect><rect class="c2" x="572" y="49" width="9" height="9" rx="2"><title>5 commits on 06 Nov 2025</title></rect><rect class="c2" x="572" y="60" width="9" height="9" rx="2"><title>5 commits on 07 Nov 2025</title></rect><rect class="c2" x="572" y="71" width="9" height="9" rx="2"><title>5 commits on 08 Nov 2025</title></rect><rect class="c0" x="572" y="82" width="9" height="9" rx="2"><title>0 commits on 09 Nov 2025</title></rect><rect class="c1" x="583" y="16" width="9" height="9" rx="2"><title>2 commits on 10 Nov 2025</title></rect><rect class="c2" x="583" y="27" width="9" height="9" rx="2"><title>5 commits on 11 Nov 2025</title></rect><rect class="c3" x="583" y="38" width="9" height="9" rx="2"><title>9 commits on 12 Nov 2025</title></rect><rect class="c4" x="583" y="49" width="9" height="9" rx="2"><title>13 commits on 13 Nov 2025</title></rect><rect class="c2" x="583" y="60" width="9" height="9" rx="2"><title>3 commits on 14 Nov 2025</title></rect><rect class="c2" x="583" y="71" width="9" height="9" rx="2"><title>3 commits on 15 Nov 2025</title></rect><rect class="c0" x="583" y="82" width="9" height="9" rx="2"><title>0 commits on 16 Nov 2025</title></rect><rect class="c0" x="594" y="16" width="9" height="9" rx="2"><title>0 commits on 17 Nov 2025</title></rect><rect class="c3" x="594" y="27" width="9" height="9" rx="2"><title>11 commits on 18 Nov 2025</title></rect><rect class="c2" x="594" y="38" width="9" height="9" rx="2"><title>4 commits on 19 Nov 2025</title></rect><rect class="c2" x="594" y="49" width="9" height="9" rx="2"><title>3 commits on 20 Nov 2025</title></rect><rect class="c3" x="594" y="60" width="9" height="9" rx="2"><title>8 commits on 21 Nov 2025</title></rect><rect class="c3" x="594" y="71" width="9" height="9" rx="2"><title>9 commits on 22 Nov 2025</title></rect><rect class="c1" x="594" y="82" width="9" height="9" rx="2"><title>1 commit on 23 Nov 2025</title></rect><rect class="c4" x="605" y="16" width="9" height="9" rx="2"><title>27 commits on 24 Nov 2025</title></rect><rect class="c2" x="605" y="27" width="9" height="9" rx="2"><title>4 commits on 25 Nov 2025</title></rect><rect class="c0" x="605" y="38" width="9" height="9" rx="2"><title>0 commits on 26 Nov 2025</title></rect><rect class="c1" x="605" y="49" width="9" height="9" rx="2"><title>1 commit on 27 Nov 2025</title></rect><rect class="c1" x="605" y="60" width="9" height="9" rx="2"><title>1 commit on 28 Nov 2025</title></rect><rect class="c0" x="605" y="71" width="9" height="9" rx="2"><title>0 commits on 29 Nov 2025</title></rect><rect class="c0" x="605" y="82" width="9" height="9" rx="2"><title>0 commits on 30 Nov 2025</title></rect><rect class="c3" x="616" y="16" width="9" height="9" rx="2"><title>6 commits on 01 Dec 2025</title></rect><rect class="c0" x="616" y="27" width="9" height="9" rx="2"><title>0 commits on 02 Dec 2025</title></rect><rect class="c0" x="616" y="38" width="9" height="9" rx="2"><title>0 commits on 03 Dec 2025</title></rect><rect class="c2" x="616" y="49" width="9" height="9" rx="2"><title>4 commits on 04 Dec 2025</title></rect><rect class="c1" x="616" y="60" width="9" height="9" rx="2"><title>1 commit on 05 Dec 2025</title></rect><rect class="c0" x="616" y="71" width="9" height="9" rx="2"><title>0 commits on 06 Dec 2025</title></rect><rect class="c0" x="616" y="82" width="9" height="9" rx="2"><title>0 commits on 07 Dec 2025</title></rect><rect class="c2" x="627" y="16" width="9" height="9" rx="2"><title>3 commits on 08 Dec 2025</title></rect><rect class="c3" x="627" y="27" width="9" height="9" rx="2"><title>8 commits on 09 Dec 2025</title></rect><rect class="c3" x="627" y="38" width="9" height="9" rx="2"><title>10 commits on 10 Dec 2025</title></rect><rect class="c1" x="627" y="49" width="9" height="9" rx="2"><title>1 commit on 11 Dec 2025</title></rect><rect class="c2" x="627" y="60" width="9" height="9" rx="2"><title>3 commits on 12 Dec 2025</title></rect><rect class="c3" x="627" y="71" width="9" height="9" rx="2"><title>6 commits on 13 Dec 2025</title></rect><rect class="c0" x="627" y="82" width="9" height="9" rx="2"><title>0 commits on 14 Dec 2025</title></rect><rect class="c3" x="638" y="16" width="9" height="9" rx="2"><title>6 commits on 15 Dec 2025</title></rect><rect class="c3" x="638" y="27" width="9" height="9" rx="2"><title>8 commits on 16 Dec 2025</title></rect><rect class="c3" x="638" y="38" width="9" height="9" rx="2"><title>9 commits on 17 Dec 2025</title></rect><rect class="c4" x="638" y="49" width="9" height="9" rx="2"><title>13 commits on 18 Dec 2025</title></rect><rect class="c4" x="638" y="60" width="9" height="9" rx="2"><title>19 commits on 19 Dec 2025</title></rect><rect class="c1" x="638" y="71" width="9" height="9" rx="2"><title>2 commits on 20 Dec 2025</title></rect><rect class="c0" x="638" y="82" width="9" height="9" rx="2"><title>0 commits on 21 Dec 2025</title></rect><rect class="c3" x="649" y="16" width="9" height="9" rx="2"><title>8 commits on 22 Dec 2025</title></rect><rect class="c3" x="649" y="27" width="9" height="9" rx="2"><title>9 commits on 23 Dec 2025</title></rect><rect class="c4" x="649" y="38" width="9" height="9" rx="2"><title>19 commits on 24 Dec 2025</title></rect><rect class="c0" x="649" y="49" width="9" height="9" rx="2"><title>0 commits on 25 Dec 2025</title></rect><rect class="c4" x="649" y="60" width="9" height="9" rx="2"><title>20 commits on 26 Dec 2025</title></rect><rect class="c0" x="649" y="71" width="9" height="9" rx="2"><title>0 commits on 27 Dec 2025</title></rect><rect class="c0" x="649" y="82" width="9" height="9" rx="2"><title>0 commits on 28 Dec 2025</title></rect><rect class="c0" x="660" y="16" width="9" height="9" rx="2"><title>0 commits on 29 Dec 2025</title></rect><rect class="c0" x="660" y="27" width="9" height="9" rx="2"><title>0 commits on 30 Dec 2025</title></rect><rect class="c0" x="660" y="38" width="9" height="9" rx="2"><title>0 commits on 31 Dec 2025</title></rect><rect class="c0" x="660" y="49" width="9" height="9" rx="2"><title>0 commits on 01 Jan 2026</title></rect><rect class="c2" x="660" y="60" width="9" height="9" rx="2"><title>5 commits on 02 Jan 2026</title></rect><rect class="c2" x="660" y="71" width="9" height="9" rx="2"><title>5 commits on 03 Jan 2026</title></rect><rect class="c2" x="660" y="82" width="9" height="9" rx="2"><title>5 commits on 04 Jan 2026</title></rect><rect class="c4" x="671" y="16" width="9" height="9" rx="2"><title>13 commits on 05 Jan 2026</title></rect><rect class="c3" x="671" y="27" width="9" height="9" rx="2"><title>8 commits on 06 Jan 2026</title></rect><rect class="c1" x="671" y="38" width="9" height="9" rx="2"><title>2 commits on 07 Jan 2026</title></rect><rect class="c4" x="671" y="49" width="9" height="9" rx="2"><title>26 commits on 08 Jan 2026</title></rect><rect class="c3" x="671" y="60" width="9" height="9" rx="2"><title>8 commits on 09 Jan 2026</title></rect><rect class="c1" x="671" y="71" width="9" height="9" rx="2"><title>2 commits on 10 Jan 2026</title></rect><rect class="c0" x="671" y="82" width="9" height="9" rx="2"><title>0 commits on 11 Jan 2026</title></rect><rect class="c1" x="682" y="16" width="9" height="9" rx="2"><title>1 commit on 12 Jan 2026</title></rect><rect class="c3" x="682" y="27" width="9" height="9" rx="2"><title>11 commits on 13 Jan 2026</title></rect><rect class="c4" x="682" y="38" width="9" height="9" rx="2"><title>15 commits on 14 Jan 2026</title></rect><rect class="c3" x="682" y="49" width="9" height="9" rx="2"><title>7 commits on 15 Jan 2026</title></rect><rect class="c4" x="682" y="60" width="9" height="9" rx="2"><title>23 commits on 16 Jan 2026</title></rect><rect class="c3" x="682" y="71" width="9" height="9" rx="2"><title>6 commits on 17 Jan 2026</title></rect><rect class="c0" x="682" y="82" width="9" height="9" rx="2"><title>0 commits on 18 Jan 2026</title></rect><rect class="c3" x="693" y="16" width="9" height="9" rx="2"><title>7 commits on 19 Jan 2026</title></rect><rect class="c2" x="693" y="27" width="9" height="9" rx="2"><title>4 commits on 20 Jan 2026</title></rect><rect class="c2" x="693" y="38" width="9" height="9" rx="2"><title>5 commits on 21 Jan 2026</title></rect><rect class="c3" x="693" y="49" width="9" height="9" rx="2"><title>11 commits on 22 Jan 2026</title></rect><rect class="c3" x="693" y="60" width="9" height="9" rx="2"><title>10 commits on 23 Jan 2026</title></rect><rect class="c3" x="693" y="71" width="9" height="9" rx="2"><title>7 commits on 24 Jan 2026</title></rect><rect class="c0" x="693" y="82" width="9" height="9" rx="2"><title>0 commits on 25 Jan 2026</title></rect><rect class="c0" x="704" y="16" width="9" height="9" rx="2"><title>0 commits on 26 Jan 2026</title></rect><rect class="c4" x="704" y="27" width="9" height="9" rx="2"><title>27 commits on 27 Jan 2026</title></rect><rect class="c4" x="704" y="38" width="9" height="9" rx="2"><title>18 commits on 28 Jan 2026</title></rect><rect class="c3" x="704" y="49" width="9" height="9" rx="2"><title>8 commits on 29 Jan 2026</title></rect><rect class="c3" x="704" y="60" width="9" height="9" rx="2"><title>7 commits on 30 Jan 2026</title></rect><rect class="c2" x="704" y="71" width="9" height="9" rx="2"><title>3 commits on 31 Jan 2026</title></rect><rect class="c0" x="704" y="82" width="9" height="9" rx="2"><title>0 commits on 01 Feb 2026</title></rect><rect class="c2" x="715" y="16" width="9" height="9" rx="2"><title>5 commits on 02 Feb 2026</title></rect><rect class="c3" x="715" y="27" width="9" height="9" rx="2"><title>10 commits on 03 Feb 2026</title></rect><rect class="c0" x="715" y="38" width="9" height="9" rx="2"><title>0 commits on 04 Feb 2026</title></rect><rect class="c3" x="715" y="49" width="9" height="9" rx="2"><title>12 commits on 05 Feb 2026</title></rect><rect class="c3" x="715" y="60" width="9" height="9" rx="2"><title>6 commits on 06 Feb 2026</title></rect><rect class="c1" x="715" y="71" width="9" height="9" rx="2"><title>1 commit on 07 Feb 2026</title></rect><rect class="c0" x="715" y="82" width="9" height="9" rx="2"><title>0 commits on 08 Feb 2026</title></rect><rect class="c2" x="726" y="16" width="9" height="9" rx="2"><title>4 commits on 09 Feb 2026</title></rect><rect class="c4" x="726" y="27" width="9" height="9" rx="2"><title>17 commits on 10 Feb 2026</title></rect><rect class="c3" x="726" y="38" width="9" height="9" rx="2"><title>12 commits on 11 Feb 2026</title></rect><rect class="c3" x="726" y="49" width="9" height="9" rx="2"><title>9 commits on 12 Feb 2026</title></rect><rect class="c3" x="726" y="60" width="9" height="9" rx="2"><title>6 commits on 13 Feb 2026</title></rect><rect class="c1" x="726" y="71" width="9" height="9" rx="2"><title>2 commits on 14 Feb 2026</title></rect><rect class="c0" x="726" y="82" width="9" height="9" rx="2"><title>0 commits on 15 Feb 2026</title></rect><rect class="c0" x="737" y="16" width="9" height="9" rx="2"><title>0 commits on 16 Feb 2026</title></rect><rect class="c4" x="737" y="27" width="9" height="9" rx="2"><title>14 commits on 17 Feb 2026</title></rect><rect class="c3" x="737" y="38" width="9" height="9" rx="2"><title>12 commits on 18 Feb 2026</title></rect><rect class="c3" x="737" y="49" width="9" height="9" rx="2"><title>7 commits on 19 Feb 2026</title></rect><rect class="c3" x="737" y="60" width="9" height="9" rx="2"><title>6 commits on 20 Feb 2026</title></rect><rect class="c0" x="737" y="71" width="9" height="9" rx="2"><title>0 commits on 21 Feb 2026</title></rect><rect class="c0" x="737" y="82" width="9" height="9" rx="2"><title>0 commits on 22 Feb 2026</title></rect><rect class="c2" x="748" y="16" width="9" height="9" rx="2"><title>3 commits on 23 Feb 2026</title></rect><rect class="c2" x="748" y="27" width="9" height="9" rx="2"><title>4 commits on 24 Feb 2026</title></rect><rect class="c2" x="748" y="38" width="9" height="9" rx="2"><title>4 commits on 25 Feb 2026</title></rect><rect class="c2" x="748" y="49" width="9" height="9" rx="2"><title>4 commits on 26 Feb 2026</title></rect><rect class="c1" x="748" y="60" width="9" height="9" rx="2"><title>2 commits on 27 Feb 2026</title></rect><rect class="c4" x="748" y="71" width="9" height="9" rx="2"><title>14 commits on 28 Feb 2026</title></rect><rect class="c1" x="748" y="82" width="9" height="9" rx="2"><title>2 commits on 01 Mar 2026</title></rect><rect class="c4" x="759" y="16" width="9" height="9" rx="2"><title>14 commits on 02 Mar 2026</title></rect><rect class="c2" x="759" y="27" width="9" height="9" rx="2"><title>5 commits on 03 Mar 2026</title></rect><rect class="c0" x="759" y="38" width="9" height="9" rx="2"><title>0 commits on 04 Mar 2026</title></rect><rect class="c4" x="759" y="49" width="9" height="9" rx="2"><title>15 commits on 05 Mar 2026</title></rect><rect class="c0" x="759" y="60" width="9" height="9" rx="2"><title>0 commits on 06 Mar 2026</title></rect><rect class="c0" x="759" y="71" width="9" height="9" rx="2"><title>0 commits on 07 Mar 2026</title></rect><rect class="c0" x="759" y="82" width="9" height="9" rx="2"><title>0 commits on 08 Mar 2026</title></rect><rect class="c4" x="770" y="16" width="9" height="9" rx="2"><title>13 commits on 09 Mar 2026</title></rect><rect class="c2" x="770" y="27" width="9" height="9" rx="2"><title>5 commits on 10 Mar 2026</title></rect><rect class="c1" x="770" y="38" width="9" height="9" rx="2"><title>2 commits on 11 Mar 2026</title></rect><rect class="c3" x="770" y="49" width="9" height="9" rx="2"><title>11 commits on 12 Mar 2026</title></rect><rect class="c4" x="770" y="60" width="9" height="9" rx="2"><title>36 commits on 13 Mar 2026</title></rect><rect class="c3" x="770" y="71" width="9" height="9" rx="2"><title>6 commits on 14 Mar 2026</title></rect><rect class="c0" x="770" y="82" width="9" height="9" rx="2"><title>0 commits on 15 Mar 2026</title></rect><rect class="c4" x="781" y="16" width="9" height="9" rx="2"><title>17 commits on 16 Mar 2026</title></rect><rect class="c3" x="781" y="27" width="9" height="9" rx="2"><title>7 commits on 17 Mar 2026</title></rect><rect class="c2" x="781" y="38" width="9" height="9" rx="2"><title>5 commits on 18 Mar 2026</title></rect><rect class="c3" x="781" y="49" width="9" height="9" rx="2"><title>9 commits on 19 Mar 2026</title></rect><rect class="c3" x="781" y="60" width="9" height="9" rx="2"><title>10 commits on 20 Mar 2026</title></rect><rect class="c0" x="781" y="71" width="9" height="9" rx="2"><title>0 commits on 21 Mar 2026</title></rect><rect class="c0" x="781" y="82" width="9" height="9" rx="2"><title>0 commits on 22 Mar 2026</title></rect><rect class="c2" x="792" y="16" width="9" height="9" rx="2"><title>5 commits on 23 Mar 2026</title></rect><rect class="c1" x="792" y="27" width="9" height="9" rx="2"><title>2 commits on 24 Mar 2026</title></rect><rect class="c3" x="792" y="38" width="9" height="9" rx="2"><title>8 commits on 25 Mar 2026</title></rect><rect class="c2" x="792" y="49" width="9" height="9" rx="2"><title>5 commits on 26 Mar 2026</title></rect><rect class="c3" x="792" y="60" width="9" height="9" rx="2"><title>12 commits on 27 Mar 2026</title></rect><rect class="c3" x="792" y="71" width="9" height="9" rx="2"><title>10 commits on 28 Mar 2026</title></rect><rect class="c0" x="792" y="82" width="9" height="9" rx="2"><title>0 commits on 29 Mar 2026</title></rect><rect class="c3" x="803" y="16" width="9" height="9" rx="2"><title>12 commits on 30 Mar 2026</title></rect><rect class="c4" x="803" y="27" width="9" height="9" rx="2"><title>17 commits on 31 Mar 2026</title></rect><rect class="c3" x="803" y="38" width="9" height="9" rx="2"><title>7 commits on 01 Apr 2026</title></rect><rect class="c2" x="803" y="49" width="9" height="9" rx="2"><title>3 commits on 02 Apr 2026</title></rect><rect class="c4" x="803" y="60" width="9" height="9" rx="2"><title>34 commits on 03 Apr 2026</title></rect><rect class="c0" x="803" y="71" width="9" height="9" rx="2"><title>0 commits on 04 Apr 2026</title></rect><rect class="c0" x="803" y="82" width="9" height="9" rx="2"><title>0 commits on 05 Apr 2026</title></rect><rect class="c3" x="814" y="16" width="9" height="9" rx="2"><title>6 commits on 06 Apr 2026</title></rect><rect class="c2" x="814" y="27" width="9" height="9" rx="2"><title>3 commits on 07 Apr 2026</title></rect><rect class="c2" x="814" y="38" width="9" height="9" rx="2"><title>5 commits on 08 Apr 2026</title></rect><rect class="c3" x="814" y="49" width="9" height="9" rx="2"><title>6 commits on 09 Apr 2026</title></rect><rect class="c3" x="814" y="60" width="9" height="9" rx="2"><title>10 commits on 10 Apr 2026</title></rect><rect class="c2" x="814" y="71" width="9" height="9" rx="2"><title>3 commits on 11 Apr 2026</title></rect><rect class="c0" x="814" y="82" width="9" height="9" rx="2"><title>0 commits on 12 Apr 2026</title></rect><rect class="c1" x="825" y="16" width="9" height="9" rx="2"><title>2 commits on 13 Apr 2026</title></rect><rect class="c0" x="825" y="27" width="9" height="9" rx="2"><title>0 commits on 14 Apr 2026</title></rect><rect class="c3" x="825" y="38" width="9" height="9" rx="2"><title>12 commits on 15 Apr 2026</title></rect><rect class="c3" x="825" y="49" width="9" height="9" rx="2"><title>11 commits on 16 Apr 2026</title></rect><rect class="c3" x="825" y="60" width="9" height="9" rx="2"><title>6 commits on 17 Apr 2026</title></rect><rect class="c0" x="825" y="71" width="9" height="9" rx="2"><title>0 commits on 18 Apr 2026</title></rect><rect class="c0" x="825" y="82" width="9" height="9" rx="2"><title>0 commits on 19 Apr 2026</title></rect><rect class="c4" x="836" y="16" width="9" height="9" rx="2"><title>26 commits on 20 Apr 2026</title></rect><rect class="c3" x="836" y="27" width="9" height="9" rx="2"><title>8 commits on 21 Apr 2026</title></rect><rect class="c3" x="836" y="38" width="9" height="9" rx="2"><title>10 commits on 22 Apr 2026</title></rect><rect class="c1" x="836" y="49" width="9" height="9" rx="2"><title>2 commits on 23 Apr 2026</title></rect><rect class="c3" x="836" y="60" width="9" height="9" rx="2"><title>12 commits on 24 Apr 2026</title></rect><rect class="c3" x="836" y="71" width="9" height="9" rx="2"><title>11 commits on 25 Apr 2026</title></rect><rect class="c1" x="836" y="82" width="9" height="9" rx="2"><title>1 commit on 26 Apr 2026</title></rect><rect class="c0" x="847" y="16" width="9" height="9" rx="2"><title>0 commits on 27 Apr 2026</title></rect><rect class="c4" x="847" y="27" width="9" height="9" rx="2"><title>13 commits on 28 Apr 2026</title></rect><rect class="c2" x="847" y="38" width="9" height="9" rx="2"><title>5 commits on 29 Apr 2026</title></rect><rect class="c3" x="847" y="49" width="9" height="9" rx="2"><title>8 commits on 30 Apr 2026</title></rect><rect class="c4" x="847" y="60" width="9" height="9" rx="2"><title>16 commits on 01 May 2026</title></rect><rect class="c1" x="847" y="71" width="9" height="9" rx="2"><title>1 commit on 02 May 2026</title></rect><rect class="c0" x="847" y="82" width="9" height="9" rx="2"><title>0 commits on 03 May 2026</title></rect><rect class="c4" x="858" y="16" width="9" height="9" rx="2"><title>16 commits on 04 May 2026</title></rect><rect class="c3" x="858" y="27" width="9" height="9" rx="2"><title>12 commits on 05 May 2026</title></rect><rect class="c3" x="858" y="38" width="9" height="9" rx="2"><title>6 commits on 06 May 2026</title></rect><rect class="c3" x="858" y="49" width="9" height="9" rx="2"><title>6 commits on 07 May 2026</title></rect><rect class="c0" x="858" y="60" width="9" height="9" rx="2"><title>0 commits on 08 May 2026</title></rect><rect class="c2" x="858" y="71" width="9" height="9" rx="2"><title>5 commits on 09 May 2026</title></rect><rect class="c0" x="858" y="82" width="9" height="9" rx="2"><title>0 commits on 10 May 2026</title></rect><rect class="c3" x="869" y="16" width="9" height="9" rx="2"><title>7 commits on 11 May 2026</title></rect><rect class="c2" x="869" y="27" width="9" height="9" rx="2"><title>4 commits on 12 May 2026</title></rect><rect class="c3" x="869" y="38" width="9" height="9" rx="2"><title>7 commits on 13 May 2026</title></rect><rect class="c3" x="869" y="49" width="9" height="9" rx="2"><title>9 commits on 14 May 2026</title></rect><rect class="c4" x="869" y="60" width="9" height="9" rx="2"><title>38 commits on 15 May 2026</title></rect><rect class="c0" x="869" y="71" width="9" height="9" rx="2"><title>0 commits on 16 May 2026</title></rect><rect class="c0" x="869" y="82" width="9" height="9" rx="2"><title>0 commits on 17 May 2026</title></rect><rect class="c3" x="880" y="16" width="9" height="9" rx="2"><title>8 commits on 18 May 2026</title></rect><rect class="c3" x="880" y="27" width="9" height="9" rx="2"><title>6 commits on 19 May 2026</title></rect><rect class="c2" x="880" y="38" width="9" height="9" rx="2"><title>4 commits on 20 May 2026</title></rect><rect class="c0" x="880" y="49" width="9" height="9" rx="2"><title>0 commits on 21 May 2026</title></rect><rect class="c2" x="880" y="60" width="9" height="9" rx="2"><title>5 commits on 22 May 2026</title></rect><rect class="c3" x="880" y="71" width="9" height="9" rx="2"><title>7 commits on 23 May 2026</title></rect><rect class="c0" x="880" y="82" width="9" height="9" rx="2"><title>0 commits on 24 May 2026</title></rect><rect class="c1" x="891" y="16" width="9" height="9" rx="2"><title>2 commits on 25 May 2026</title></rect><rect class="c4" x="891" y="27" width="9" height="9" rx="2"><title>17 commits on 26 May 2026</title></rect><rect class="c4" x="891" y="38" width="9" height="9" rx="2"><title>13 commits on 27 May 2026</title></rect><rect class="c3" x="891" y="49" width="9" height="9" rx="2"><title>11 commits on 28 May 2026</title></rect><rect class="c3" x="891" y="60" width="9" height="9" rx="2"><title>12 commits on 29 May 2026</title></rect><rect class="c3" x="891" y="71" width="9" height="9" rx="2"><title>6 commits on 30 May 2026</title></rect><rect class="c0" x="891" y="82" width="9" height="9" rx="2"><title>0 commits on 31 May 2026</title></rect><rect class="c3" x="902" y="16" width="9" height="9" rx="2"><title>8 commits on 01 Jun 2026</title></rect><rect class="c4" x="902" y="27" width="9" height="9" rx="2"><title>32 commits on 02 Jun 2026</title></rect><rect class="c3" x="902" y="38" width="9" height="9" rx="2"><title>8 commits on 03 Jun 2026</title></rect><rect class="c4" x="902" y="49" width="9" height="9" rx="2"><title>14 commits on 04 Jun 2026</title></rect><rect class="c4" x="902" y="60" width="9" height="9" rx="2"><title>18 commits on 05 Jun 2026</title></rect><rect class="c3" x="902" y="71" width="9" height="9" rx="2"><title>9 commits on 06 Jun 2026</title></rect><rect class="c0" x="902" y="82" width="9" height="9" rx="2"><title>0 commits on 07 Jun 2026</title></rect><rect class="c3" x="913" y="16" width="9" height="9" rx="2"><title>8 commits on 08 Jun 2026</title></rect><rect class="c4" x="913" y="27" width="9" height="9" rx="2"><title>18 commits on 09 Jun 2026</title></rect><rect class="c3" x="913" y="38" width="9" height="9" rx="2"><title>11 commits on 10 Jun 2026</title></rect><rect class="c3" x="913" y="49" width="9" height="9" rx="2"><title>12 commits on 11 Jun 2026</title></rect><rect class="c3" x="913" y="60" width="9" height="9" rx="2"><title>7 commits on 12 Jun 2026</title></rect><rect class="c0" x="913" y="71" width="9" height="9" rx="2"><title>0 commits on 13 Jun 2026</title></rect><rect class="c0" x="913" y="82" width="9" height="9" rx="2"><title>0 commits on 14 Jun 2026</title></rect><rect class="c4" x="924" y="16" width="9" height="9" rx="2"><title>17 commits on 15 Jun 2026</title></rect><rect class="c3" x="924" y="27" width="9" height="9" rx="2"><title>8 commits on 16 Jun 2026</title></rect><rect class="c3" x="924" y="38" width="9" height="9" rx="2"><title>8 commits on 17 Jun 2026</title></rect><rect class="c2" x="924" y="49" width="9" height="9" rx="2"><title>4 commits on 18 Jun 2026</title></rect><rect class="c4" x="924" y="60" width="9" height="9" rx="2"><title>29 commits on 19 Jun 2026</title></rect><rect class="c0" x="924" y="71" width="9" height="9" rx="2"><title>0 commits on 20 Jun 2026</title></rect><rect class="c0" x="924" y="82" width="9" height="9" rx="2"><title>0 commits on 21 Jun 2026</title></rect><rect class="c3" x="935" y="16" width="9" height="9" rx="2"><title>7 commits on 22 Jun 2026</title></rect><rect class="c0" x="935" y="27" width="9" height="9" rx="2"><title>0 commits on 23 Jun 2026</title></rect><rect class="c3" x="935" y="38" width="9" height="9" rx="2"><title>9 commits on 24 Jun 2026</title></rect><rect class="c0" x="935" y="49" width="9" height="9" rx="2"><title>0 commits on 25 Jun 2026</title></rect><rect class="c2" x="935" y="60" width="9" height="9" rx="2"><title>5 commits on 26 Jun 2026</title></rect><rect class="c2" x="935" y="71" width="9" height="9" rx="2"><title>5 commits on 27 Jun 2026</title></rect><rect class="c0" x="935" y="82" width="9" height="9" rx="2"><title>0 commits on 28 Jun 2026</title></rect><rect class="c3" x="946" y="16" width="9" height="9" rx="2"><title>6 commits on 29 Jun 2026</title></rect><rect class="c2" x="946" y="27" width="9" height="9" rx="2"><title>5 commits on 30 Jun 2026</title></rect><rect class="c3" x="946" y="38" width="9" height="9" rx="2"><title>6 commits on 01 Jul 2026</title></rect><rect class="c2" x="946" y="49" width="9" height="9" rx="2"><title>3 commits on 02 Jul 2026</title></rect><rect class="c1" x="946" y="60" width="9" height="9" rx="2"><title>1 commit on 03 Jul 2026</title></rect><rect class="c0" x="946" y="71" width="9" height="9" rx="2"><title>0 commits on 04 Jul 2026</title></rect><rect class="c0" x="946" y="82" width="9" height="9" rx="2"><title>0 commits on 05 Jul 2026</title></rect><rect class="c0" x="957" y="16" width="9" height="9" rx="2"><title>0 commits on 06 Jul 2026</title></rect><rect class="c3" x="957" y="27" width="9" height="9" rx="2"><title>8 commits on 07 Jul 2026</title></rect><rect class="c0" x="957" y="38" width="9" height="9" rx="2"><title>0 commits on 08 Jul 2026</title></rect><rect class="c3" x="957" y="49" width="9" height="9" rx="2"><title>6 commits on 09 Jul 2026</title></rect><rect class="c3" x="957" y="60" width="9" height="9" rx="2"><title>6 commits on 10 Jul 2026</title></rect><rect class="c3" x="957" y="71" width="9" height="9" rx="2"><title>7 commits on 11 Jul 2026</title></rect><rect class="c0" x="957" y="82" width="9" height="9" rx="2"><title>0 commits on 12 Jul 2026</title></rect><rect class="c3" x="968" y="16" width="9" height="9" rx="2"><title>9 commits on 13 Jul 2026</title></rect><rect class="c2" x="968" y="27" width="9" height="9" rx="2"><title>5 commits on 14 Jul 2026</title></rect><rect class="c4" x="968" y="38" width="9" height="9" rx="2"><title>32 commits on 15 Jul 2026</title></rect><rect class="c2" x="968" y="49" width="9" height="9" rx="2"><title>4 commits on 16 Jul 2026</title></rect><rect class="c4" x="968" y="60" width="9" height="9" rx="2"><title>14 commits on 17 Jul 2026</title></rect><rect class="c3" x="968" y="71" width="9" height="9" rx="2"><title>9 commits on 18 Jul 2026</title></rect><rect class="c0" x="968" y="82" width="9" height="9" rx="2"><title>0 commits on 19 Jul 2026</title></rect><rect class="c4" x="979" y="16" width="9" height="9" rx="2"><title>14 commits on 20 Jul 2026</title></rect><rect class="c0" x="979" y="27" width="9" height="9" rx="2"><title>0 commits on 21 Jul 2026</title></rect><rect class="c0" x="979" y="38" width="9" height="9" rx="2"><title>0 commits on 22 Jul 2026</title></rect><rect class="c4" x="979" y="49" width="9" height="9" rx="2"><title>13 commits on 23 Jul 2026</title></rect><rect class="c4" x="979" y="60" width="9" height="9" rx="2"><title>41 commits on 24 Jul 2026</title></rect><rect class="c3" x="979" y="71" width="9" height="9" rx="2"><title>11 commits on 25 Jul 2026</title></rect><rect class="c0" x="979" y="82" width="9" height="9" rx="2"><title>0 commits on 26 Jul 2026</title></rect><rect class="c3" x="990" y="16" width="9" height="9" rx="2"><title>12 commits on 27 Jul 2026</title></rect><rect class="c1" x="990" y="27" width="9" height="9" rx="2"><title>1 commit on 28 Jul 2026</title></rect><rect class="c3" x="990" y="38" width="9" height="9" rx="2"><title>12 commits on 29 Jul 2026</title></rect><rect class="c3" x="990" y="49" width="9" height="9" rx="2"><title>6 commits on 30 Jul 2026</title></rect><rect class="c2" x="990" y="60" width="9" height="9" rx="2"><title>4 commits on 31 Jul 2026</title></rect><rect class="c0" x="990" y="71" width="9" height="9" rx="2"><title>0 commits on 01 Aug 2026</title></rect><rect class="c0" x="990" y="82" width="9" height="9" rx="2"><title>0 commits on 02 Aug 2026</title></rect><rect class="c2" x="1001" y="16" width="9" height="9" rx="2"><title>3 commits on 03 Aug 2026</title></rect><rect class="c4" x="1001" y="27" width="9" height="9" rx="2"><title>14 commits on 04 Aug 2026</title></rect><rect class="c2" x="1001" y="38" width="9" height="9" rx="2"><title>4 commits on 05 Aug 2026</title></rect><rect class="c4" x="1001" y="49" width="9" height="9" rx="2"><title>13 commits on 06 Aug 2026</title></rect><rect class="c3" x="1001" y="60" width="9" height="9" rx="2"><title>11 commits on 07 Aug 2026</title></rect><rect class="c4" x="1001" y="71" width="9" height="9" rx="2"><title>28 commits on 08 Aug 2026</title></rect><rect class="c0" x="1001" y="82" width="9" height="9" rx="2"><title>0 commits on 09 Aug 2026</title></rect><rect class="c4" x="1012" y="16" width="9" height="9" rx="2"><title>20 commits on 10 Aug 2026</title></rect><rect class="c4" x="1012" y="27" width="9" height="9" rx="2"><title>20 commits on 11 Aug 2026</title></rect><rect class="c2" x="1012" y="38" width="9" height="9" rx="2"><title>4 commits on 12 Aug 2026</title></rect><rect class="c3" x="1012" y="49" width="9" height="9" rx="2"><title>10 commits on 13 Aug 2026</title></rect><rect class="c4" x="1012" y="60" width="9" height="9" rx="2"><title>19 commits on 14 Aug 2026</title></rect><rect class="c0" x="1012" y="71" width="9" height="9" rx="2"><title>0 commits on 15 Aug 2026</title></rect><rect class="c0" x="1012" y="82" width="9" height="9" rx="2"><title>0 commits on 16 Aug 2026</title></rect><rect class="c3" x="1023" y="16" width="9" height="9" rx="2"><title>8 commits on 17 Aug 2026</title></rect><rect class="c3" x="1023" y="27" width="9" height="9" rx="2"><title>7 commits on 18 Aug 2026</title></rect><rect class="c3" x="1023" y="38" width="9" height="9" rx="2"><title>9 commits on 19 Aug 2026</title></rect><rect class="c4" x="1023" y="49" width="9" height="9" rx="2"><title>15 commits on 20 Aug 2026</title></rect><rect class="c0" x="1023" y="60" width="9" height="9" rx="2"><title>0 commits on 21 Aug 2026</title></rect><rect class="c4" x="1023" y="71" width="9" height="9" rx="2"><title>19 commits on 22 Aug 2026</title></rect><rect class="c0" x="1023" y="82" width="9" height="9" rx="2"><title>0 commits on 23 Aug 2026</title></rect><rect class="c4" x="1034" y="16" width="9" height="9" rx="2"><title>15 commits on 24 Aug 2026</title></rect><rect class="c4" x="1034" y="27" width="9" height="9" rx="2"><title>21 commits on 25 Aug 2026</title></rect><rect class="c4" x="1034" y="38" width="9" height="9" rx="2"><title>16 commits on 26 Aug 2026</title></rect><rect class="c3" x="1034" y="49" width="9" height="9" rx="2"><title>11 commits on 27 Aug 2026</title></rect><rect class="c0" x="1034" y="60" width="9" height="9" rx="2"><title>0 commits on 28 Aug 2026</title></rect><rect class="c4" x="1034" y="71" width="9" height="9" rx="2"><title>17 commits on 29 Aug 2026</title></rect><rect class="c0" x="1034" y="82" width="9" height="9" rx="2"><title>0 commits on 30 Aug 2026</title></rect><rect class="c0" x="1045" y="16" width="9" height="9" rx="2"><title>0 commits on 31 Aug 2026</title></rect><rect class="c0" x="1045" y="27" width="9" height="9" rx="2"><title>0 commits on 01 Sep 2026</title></rect><rect class="c0" x="1045" y="38" width="9" height="9" rx="2"><title>0 commits on 02 Sep 2026</title></rect><rect class="c4" x="1045" y="49" width="9" height="9" rx="2"><title>23 commits on 03 Sep 2026</title></rect><rect class="c0" x="1045" y="60" width="9" height="9" rx="2"><title>0 commits on 04 Sep 2026</title></rect><rect class="c0" x="1045" y="71" width="9" height="9" rx="2"><title>0 commits on 05 Sep 2026</title></rect><rect class="c0" x="1045" y="82" width="9" height="9" rx="2"><title>0 commits on 06 Sep 2026</title></rect><rect class="c3" x="1056" y="16" width="9" height="9" rx="2"><title>8 commits on 07 Sep 2026</title></rect><rect class="c3" x="1056" y="27" width="9" height="9" rx="2"><title>12 commits on 08 Sep 2026</title></rect><rect class="c4" x="1056" y="38" width="9" height="9" rx="2"><title>20 commits on 09 Sep 2026</title></rect><rect class="c4" x="1056" y="49" width="9" height="9" rx="2"><title>28 commits on 10 Sep 2026</title></rect><rect class="c4" x="1056" y="60" width="9" height="9" rx="2"><title>27 commits on 11 Sep 2026</title></rect><rect class="c3" x="1056" y="71" width="9" height="9" rx="2"><title>11 commits on 12 Sep 2026</title></rect><rect class="c0" x="1056" y="82" width="9" height="9" rx="2"><title>0 commits on 13 Sep 2026</title></rect><rect class="c0" x="1067" y="16" width="9" height="9" rx="2"><title>0 commits on 14 Sep 2026</title></rect><rect class="c0" x="1067" y="27" width="9" height="9" rx="2"><title>0 commits on 15 Sep 2026</title></rect><rect class="c0" x="1067" y="38" width="9" height="9" rx="2"><title>0 commits on 16 Sep 2026</title></rect><rect class="c4" x="1067" y="49" width="9" height="9" rx="2"><title>13 commits on 17 Sep 2026</title></rect><rect class="c4" x="1067" y="60" width="9" height="9" rx="2"><title>39 commits on 18 Sep 2026</title></rect><rect class="c3" x="1067" y="71" width="9" height="9" rx="2"><title>7 commits on 19 Sep 2026</title></rect><rect class="c2" x="1067" y="82" width="9" height="9" rx="2"><title>4 commits on 20 Sep 2026</title></rect><rect class="c3" x="1078" y="16" width="9" height="9" rx="2"><title>9 commits on 21 Sep 2026</title></rect><rect class="c1" x="1078" y="27" width="9" height="9" rx="2"><title>1 commit on 22 Sep 2026</title></rect><rect class="c0" x="1078" y="38" width="9" height="9" rx="2"><title>0 commits on 23 Sep 2026</title></rect><rect class="c3" x="1078" y="49" width="9" height="9" rx="2"><title>8 commits on 24 Sep 2026</title></rect><rect class="c4" x="1078" y="60" width="9" height="9" rx="2"><title>22 commits on 25 Sep 2026</title></rect><rect class="c1" x="1078" y="71" width="9" height="9" rx="2"><title>2 commits on 26 Sep 2026</title></rect><rect class="c0" x="1078" y="82" width="9" height="9" rx="2"><title>0 commits on 27 Sep 2026</title></rect><rect class="c2" x="1089" y="16" width="9" height="9" rx="2"><title>5 commits on 28 Sep 2026</title></rect><rect class="c2" x="1089" y="27" width="9" height="9" rx="2"><title>3 commits on 29 Sep 2026</title></rect><rect class="c1" x="1089" y="38" width="9" height="9" rx="2"><title>2 commits on 30 Sep 2026</title></rect><rect class="c0" x="1089" y="49" width="9" height="9" rx="2"><title>0 commits on 01 Oct 2026</title></rect><rect class="c0" x="1089" y="60" width="9" height="9" rx="2"><title>0 commits on 02 Oct 2026</title></rect><rect class="c0" x="1089" y="71" width="9" height="9" rx="2"><title>0 commits on 03 Oct 2026</title></rect><rect class="c0" x="1089" y="82" width="9" height="9" rx="2"><title>0 commits on 04 Oct 2026</title></rect><rect class="c3" x="1100" y="16" width="9" height="9" rx="2"><title>9 commits on 05 Oct 2026</title></rect><rect class="c3" x="1100" y="27" width="9" height="9" rx="2"><title>10 commits on 06 Oct 2026</title></rect><rect class="c3" x="1100" y="38" width="9" height="9" rx="2"><title>8 commits on 07 Oct 2026</title></rect><rect class="c3" x="1100" y="49" width="9" height="9" rx="2"><title>11 commits on 08 Oct 2026</title></rect><rect class="c4" x="1100" y="60" width="9" height="9" rx="2"><title>16 commits on 09 Oct 2026</title></rect><rect class="c1" x="1100" y="71" width="9" height="9" rx="2"><title>1 commit on 10 Oct 2026</title></rect></svg></div>
-    <div class="cap">
-      <span>Every commit I pushed at work, Nov 2024 – Oct 2026. <b>3,713</b> of them.</span>
-      <span class="legend">less <i style="background:var(--h0)"></i><i style="background:var(--h1)"></i><i style="background:var(--h2)"></i><i style="background:var(--h3)"></i><i style="background:var(--h4)"></i> more</span>
+    <div class="hero-grid">
+      <div>
+        <p class="lede">I'm <b>Aman Jha</b>, MTS-1 at Profunnel. I put a <b>WebRTC phone dialer inside HubSpot, Salesforce, Pipedrive, Zoho and Freshworks</b>, and built the OAuth, webhooks and pipelines that keep it running. Two years in, and I want harder problems.</p>
+        <div class="ctas">
+          <a class="btn pri" href="#work">See what I've built ↓</a>
+          <a class="btn" href="assets/Aman_Jha_Resume.pdf">Resume ↗</a>
+          <button class="btn" id="copyMail" type="button">Copy email</button>
+        </div>
+      </div>
+
+      <div class="term" aria-label="Interactive terminal">
+        <div class="term-bar"><i></i><i></i><i></i><span>aman@portfolio: ~</span></div>
+        <div class="term-body" id="tb">
+          <div id="tlog"></div>
+          <div class="term-in"><span class="p">❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input"></div>
+        </div>
+        <div class="term-hint">try <b>help</b>, <b>work</b>, <b>stack</b> or <b>hire</b></div>
+      </div>
     </div>
-  </div>
-</header>
-
-<div class="stats">
-  <div class="stat"><b>3,713</b><span>Commits shipped</span></div>
-  <div class="stat"><b>75+</b><span>Repositories</span></div>
-  <div class="stat"><b>45+</b><span>Integration services</span></div>
-  <div class="stat"><b>5</b><span>CRMs running my dialer</span></div>
+  </header>
 </div>
 
-<section id="work">
-  <h2>Work</h2>
-  <p class="sub">The source code belongs to my employer and is private. These are the parts I built.</p>
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="track">
+    <span>HubSpot</span><span>Salesforce</span><span>Pipedrive</span><span>Zoho CRM</span><span>Freshworks</span><span>Meta Lead Ads</span><span>LinkedIn Ads</span><span>Google Ads</span><span>Stripe</span><span>Razorpay</span><span>PayPal</span><span>DocuSign</span><span>Zoom</span><span>Webex</span><span>Twilio</span><span>WhatsApp</span><span>GitHub</span><span>GitLab</span><span>Mailchimp</span><span>OpenAI</span><span>Deepgram</span>
+  </div>
+</div>
 
-  <div class="job">
-    <div class="when">Jul 2024 — Present</div>
-    <div>
-      <h3>Profunnel Technologies</h3>
-      <p class="role">Member of Technical Staff (MTS-1), Full Stack · joined as an intern<br>Products: Pronnel CRM and Convarza AI Calling</p>
-    </div>
+<div class="wrap">
+  <div class="nums rv">
+    <div class="num"><b>45<em>+</em></b><span>Production integrations</span></div>
+    <div class="num"><b>5</b><span>CRMs running my dialer</span></div>
+    <div class="num"><b>75<em>+</em></b><span>Repos I've shipped to</span></div>
+    <div class="num"><b>2<em>yrs</em></b><span>Building in production</span></div>
   </div>
 
-  <article class="case">
-    <div class="idx"><b>01</b>AI calling<br>2026</div>
-    <div>
-      <h3>A SIP dialer that lives inside other CRMs</h3>
-      <p>Sales teams want to call from the CRM they already use. I built a WebRTC dialer with SIP.js and embedded it in five CRMs, each through that CRM's own SDK.</p>
-      <ul>
-        <li>Outbound and inbound calls, ring and dial tones, microphone selection, noise suppression and live call summaries.</li>
-        <li>HubSpot Calling Extensions SDK and Pipedrive App Extensions SDK, covering the handshake, click-to-call, incoming-call events and call-state sync.</li>
-        <li>A Salesforce app built with Lightning Web Components, Apex and Open CTI. Zoho custom actions come with a Deluge script generator.</li>
-        <li>Freshworks workflows that queue AI calls through channel webhooks.</li>
-        <li>Automatic call-agent setup: each user's SIP credentials are matched to channel regions, and missing agents are created as soon as the CRM user is known.</li>
-      </ul>
-      <div class="tags"><span>Angular</span><span>SIP.js</span><span>WebRTC</span><span>Web Audio</span><span>HubSpot SDK</span><span>Pipedrive SDK</span><span>Salesforce LWC</span></div>
+  <section id="work">
+    <div class="eyebrow rv">Selected work</div>
+    <h2 class="rv">Things that ship.<br><span class="dim">Things that ring.</span></h2>
+    <p class="sec-sub rv">This code runs in production for paying customers. It belongs to my employer, so it isn't public, but here is how it works.</p>
+
+    <div class="bento">
+      <article class="card c-6 rv">
+        <div class="split">
+          <div>
+            <div class="k"><span>01 · AI calling</span><b>flagship</b></div>
+            <h3>A phone that lives inside five CRMs.</h3>
+            <p>Sales reps shouldn't have to leave their CRM to make a call. I built a WebRTC dialer on SIP.js and embedded it natively in each CRM through its own SDK.</p>
+            <ul>
+              <li>Inbound and outbound calls, ring tones, mic selection, noise suppression, live call summaries</li>
+              <li>HubSpot Calling SDK and Pipedrive SDK: handshake, click-to-call, call-state sync</li>
+              <li>Salesforce app built with LWC, Apex and Open CTI. Zoho custom actions. Freshworks workflows.</li>
+              <li>Call agents created automatically, matched to each user's SIP region</li>
+            </ul>
+            <div class="tags"><span>SIP.js</span><span>WebRTC</span><span>Web Audio</span><span>Angular</span><span>Salesforce LWC</span><span>Apex</span></div>
+          </div>
+          <div class="flow" aria-label="Diagram: CRM to dialer to SIP to phone network">
+            <svg viewBox="0 0 440 300">
+              <rect class="bx" x="10" y="20" width="150" height="160" rx="10"/>
+              <text class="s" x="24" y="44">HOST CRM</text>
+              <text class="t" x="24" y="72">HubSpot</text><text class="t" x="24" y="96">Salesforce</text><text class="t" x="24" y="120">Pipedrive</text><text class="t" x="24" y="144">Zoho</text><text class="t" x="24" y="168">Freshworks</text>
+              <rect class="bx hi" x="230" y="20" width="200" height="74" rx="10"/>
+              <text class="s" x="244" y="44">EMBEDDED</text><text class="t" x="244" y="70">Pronnel Dialer</text><text class="s" x="244" y="86">SIP.js · WebRTC</text>
+              <rect class="bx" x="230" y="120" width="200" height="60" rx="10"/>
+              <text class="s" x="244" y="144">AUTH</text><text class="t" x="244" y="166">OAuth backend</text>
+              <rect class="bx" x="230" y="216" width="200" height="64" rx="10"/>
+              <text class="s" x="244" y="240">VOICE</text><text class="t" x="244" y="264">SIP → phone network</text>
+              <path class="ln" id="p1" d="M160 60 H230"/><path class="ln" id="p2" d="M160 150 H230"/><path class="ln" id="p3" d="M330 94 V120"/><path class="ln" id="p4" d="M330 180 V216"/>
+              <circle class="pk" r="4"><animateMotion dur="1.8s" repeatCount="indefinite"><mpath href="#p1"/></animateMotion></circle>
+              <circle class="pk" r="4"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#p2"/></animateMotion></circle>
+              <circle class="pk" r="4"><animateMotion dur="1.2s" repeatCount="indefinite"><mpath href="#p3"/></animateMotion></circle>
+              <circle class="pk" r="4"><animateMotion dur="1.4s" repeatCount="indefinite"><mpath href="#p4"/></animateMotion></circle>
+              <text class="s" x="170" y="52">SDK</text><text class="s" x="166" y="142">tokens</text>
+            </svg>
+          </div>
+        </div>
+      </article>
+
+      <article class="card c-3 rv">
+        <div class="k"><span>02 · Auth</span><b>node.js</b></div>
+        <h3>One OAuth backend for every CRM.</h3>
+        <p>Every CRM handles tokens differently. One service handles all of them, and nobody gets logged out.</p>
+<pre class="code"><span class="c">// simplified</span>
+<span class="kw">const</span> res = <span class="kw">await</span> <span class="f">callCrm</span>(conn, req);
+<span class="kw">if</span> (res.status === <span class="s">401</span> || res.status === <span class="s">403</span>) {
+  <span class="kw">await</span> <span class="f">refreshOnce</span>(conn); <span class="c">// shared by every caller</span>
+  <span class="kw">return</span> <span class="f">callCrm</span>(conn, req);
+}</pre>
+        <div class="tags"><span>OAuth 2.0</span><span>Express</span><span>MongoDB</span><span>JWT</span></div>
+      </article>
+
+      <article class="card c-3 rv">
+        <div class="k"><span>03 · Integrations</span><b>45+</b></div>
+        <h3>45+ integrations in production.</h3>
+        <p>Each one is its own Node.js service with OAuth connect, webhook triggers, actions and signed calls. Meta Lead Ads sync uses rate limits, exponential backoff capped at 8 days, and backfills leads it missed.</p>
+        <div class="cloud">
+          <span class="hot">Meta Ads</span><span>LinkedIn Ads</span><span>Google Ads</span><span class="hot">Stripe</span><span>Razorpay</span><span>PayPal</span><span>DocuSign</span><span>Zoho Sign</span><span class="hot">Zoom</span><span>Webex</span><span>Twilio</span><span>WhatsApp</span><span>GitHub</span><span>GitLab</span><span>Mailchimp</span><span>Snapchat</span><span>+ 29 more</span>
+        </div>
+      </article>
+
+      <article class="card c-2 rv">
+        <div class="k"><span>04 · Analytics</span></div>
+        <h3>Session replay, built from scratch.</h3>
+        <div class="replay" aria-hidden="true"><i></i><i style="animation-delay:-.2s"></i><i style="animation-delay:-.5s"></i><i style="animation-delay:-.1s"></i><i style="animation-delay:-.8s"></i><i style="animation-delay:-.3s"></i><i style="animation-delay:-.6s"></i><i style="animation-delay:-.9s"></i><i style="animation-delay:-.4s"></i><i style="animation-delay:-.7s"></i><i style="animation-delay:-.15s"></i><i style="animation-delay:-.55s"></i><i style="animation-delay:-.35s"></i><i style="animation-delay:-.85s"></i></div>
+        <p>rrweb recording with chunked, exactly-once storage, plus heatmaps, funnels and rage clicks. Every visitor becomes a lead in the CRM.</p>
+        <div class="tags"><span>rrweb</span><span>Node.js</span></div>
+      </article>
+
+      <article class="card c-2 rv">
+        <div class="k"><span>05 · Messaging</span></div>
+        <h3>Live chat and WhatsApp.</h3>
+        <p>A WebSocket chat backend on PostgreSQL with S3-signed attachments and a Next.js widget. A WhatsApp listener that handles media over 16 MB.</p>
+        <div class="tags"><span>WebSockets</span><span>PostgreSQL</span><span>Next.js</span></div>
+      </article>
+
+      <article class="card c-2 rv">
+        <div class="k"><span>06 · Product</span></div>
+        <h3>The CRM people use every day.</h3>
+        <p>Large parts of the Angular app: roles and permissions, billing and coupons, automation version history and smart filters. Plus a Chrome extension that saves LinkedIn profiles.</p>
+        <div class="tags"><span>Angular</span><span>RxJS</span><span>Chrome MV3</span></div>
+      </article>
     </div>
-  </article>
+  </section>
 
-  <article class="case">
-    <div class="idx"><b>02</b>Auth<br>2026</div>
-    <div>
-      <h3>One OAuth backend for every CRM</h3>
-      <p>Each CRM handles tokens differently. I built one Node.js service that handles all of them.</p>
-      <ul>
-        <li>Per-CRM client credentials, discovered automatically, with user-level scoping.</li>
-        <li>Automatic token refresh with retry on 401/403, safe to run concurrently.</li>
-        <li>Refresh tokens are never sent in API responses.</li>
-        <li>CRM-specific lead lookup and mapping, so the dialer always knows who is on the line.</li>
-      </ul>
-      <div class="tags"><span>Node.js</span><span>Express</span><span>OAuth 2.0</span><span>MongoDB</span><span>JWT</span></div>
+  <section id="how">
+    <div class="eyebrow rv">How I work</div>
+    <h2 class="rv">Hungry by default.</h2>
+    <p class="sec-sub rv">I'm not the most senior engineer in the room yet. I plan to be the one who wants it most.</p>
+    <div class="rules">
+      <div class="rule rv"><div class="n">01</div><h3>Ship, then sharpen.</h3><p>Working software in users' hands beats perfect software on my laptop. Then I iterate fast and hard.</p></div>
+      <div class="rule rv"><div class="n">02</div><h3>Own it end to end.</h3><p>Backend, frontend, deploy, and the 2 a.m. bug. If I built it, I answer for it.</p></div>
+      <div class="rule rv"><div class="n">03</div><h3>Read the docs nobody reads.</h3><p>HubSpot's calling SDK, Salesforce Open CTI, SIP. I go deep until the edge cases stop surprising me.</p></div>
+      <div class="rule rv"><div class="n">04</div><h3>Pick the hard problem.</h3><p>Voice, auth, sync, real-time. If everyone else is avoiding a problem, that's the one I want.</p></div>
     </div>
-  </article>
+  </section>
 
-  <article class="case">
-    <div class="idx"><b>03</b>Integrations<br>2024 — now</div>
-    <div>
-      <h3>45+ integration microservices</h3>
-      <p>Every integration in the Pronnel marketplace is its own service: OAuth connect, webhook triggers, actions, and SHA-256 signed calls to the core platform. I wrote or maintained most of them.</p>
-      <ul>
-        <li><b>Meta Lead Ads:</b> leadgen webhooks plus background sync with rate limits, exponential backoff capped at 8 days, and backfill of missed leads.</li>
-        <li><b>Payments:</b> Stripe, Razorpay and PayPal, including order capture, transaction webhooks and PDF invoices.</li>
-        <li><b>E-signature:</b> DocuSign, Zoho Sign and SignWell, with real-time file watching for large documents.</li>
-        <li><b>AI agent tools:</b> endpoints an LLM calls to check calendars and book, move or cancel appointments.</li>
-      </ul>
-      <div class="tags"><span>Node.js</span><span>BullMQ</span><span>node-cron</span><span>Webhooks</span><span>Mongoose</span><span>Docker</span><span>GitLab CI</span></div>
+  <section id="stack">
+    <div class="eyebrow rv">Stack</div>
+    <h2 class="rv">Tools I've used <span class="dim">in production.</span></h2>
+    <div class="stack" style="margin-top:40px">
+      <div class="stk rv"><h4>Backend</h4><div><span>Node.js</span><span>Express</span><span>TypeScript</span><span>BullMQ</span><span>WebSockets</span><span>REST</span></div></div>
+      <div class="stk rv"><h4>Frontend</h4><div><span>Angular</span><span>RxJS</span><span>React</span><span>Next.js</span><span>Chrome MV3</span></div></div>
+      <div class="stk rv"><h4>Voice &amp; AI</h4><div><span>SIP.js</span><span>WebRTC</span><span>Web Audio</span><span>LLM tools</span><span>Deepgram</span></div></div>
+      <div class="stk rv"><h4>Data</h4><div><span>MongoDB</span><span>PostgreSQL</span><span>Redis</span><span>MySQL</span></div></div>
+      <div class="stk rv"><h4>Auth &amp; APIs</h4><div><span>OAuth 2.0</span><span>JWT</span><span>Webhooks</span><span>HMAC signing</span></div></div>
+      <div class="stk rv"><h4>Ship</h4><div><span>Docker</span><span>GitLab CI</span><span>GitHub Actions</span><span>AWS</span><span>Linux</span></div></div>
     </div>
-  </article>
+  </section>
 
-  <article class="case">
-    <div class="idx"><b>04</b>Analytics<br>2026</div>
-    <div>
-      <h3>A web tracker with session replay</h3>
-      <p>A replacement for third-party analytics that sends website visitors straight into the CRM as leads.</p>
-      <ul>
-        <li>rrweb session recording, with payloads split into chunks and stored exactly once so large single-page apps can be replayed.</li>
-        <li>Heatmaps, funnels, rage-click and JS-error tracking, time on page and UTM attribution.</li>
-        <li>Each browser tab is tracked as its own session, and identity fields are pulled from any form.</li>
-      </ul>
-      <div class="tags"><span>rrweb</span><span>Node.js</span><span>Angular</span><span>MongoDB</span></div>
+  <section id="projects">
+    <div class="eyebrow rv">Open source</div>
+    <h2 class="rv">Side projects.</h2>
+    <div class="projs" style="margin-top:40px">
+      <a class="proj rv" href="https://github.com/amanjha7/devpulse-ai"><div class="top"><span>TypeScript · Node.js</span><span class="arr">↗</span></div><h3>devpulse-ai</h3><p>A GitHub bot that reviews pull requests and runs security checks against the OWASP Top 10.</p><div class="tags"><span>GitHub App</span><span>Security</span></div></a>
+      <a class="proj rv" href="https://github.com/amanjha7/pulse-engine"><div class="top"><span>TypeScript · Docker</span><span class="arr">↗</span></div><h3>pulse-engine</h3><p>A high-throughput webhook delivery engine with retries, built to survive bad networks and worse endpoints.</p><div class="tags"><span>Webhooks</span><span>Queues</span></div></a>
+      <a class="proj rv" href="https://document-frontend-eight.vercel.app"><div class="top"><span>Angular · Node.js</span><span class="arr">↗</span></div><h3>Document service</h3><p>Upload and convert DOCX and PDF files, with secure handling and automatic expiry. Live demo.</p><div class="tags"><span>Live</span><span>Full stack</span></div></a>
     </div>
-  </article>
+  </section>
 
-  <article class="case">
-    <div class="idx"><b>05</b>Messaging<br>2025 — 2026</div>
-    <div>
-      <h3>Live chat and WhatsApp in the CRM</h3>
-      <ul>
-        <li>A live-chat backend using WebSockets, PostgreSQL and Papercups (Elixir), with attachments signed using AWS S3 SigV4 and an embeddable Next.js widget.</li>
-        <li>A WhatsApp listener that maps JID/LID chats and handles binary buffers for media over 16 MB.</li>
-        <li>A Manifest V3 Chrome extension that saves LinkedIn profiles to the CRM.</li>
-      </ul>
-      <div class="tags"><span>WebSockets</span><span>PostgreSQL</span><span>Next.js</span><span>AWS S3</span><span>Chrome MV3</span></div>
+  <section id="journey">
+    <div class="eyebrow rv">Journey</div>
+    <h2 class="rv">So far.</h2>
+    <div class="tl" style="margin-top:40px">
+      <div class="tl-row rv"><div class="when">2025 — now</div><div><h3>MTS-1 · Profunnel Technologies</h3><p>Full stack on Pronnel CRM and Convarza AI Calling: the dialer, auth, integrations and frontend.</p></div><span class="tag">current</span></div>
+      <div class="tl-row rv"><div class="when">Jul 2024 — 2025</div><div><h3>Intern MTS · Profunnel Technologies</h3><p>Joined as an intern, shipped integrations from my first month, and became a full-time engineer.</p></div><span class="tag">promoted</span></div>
+      <div class="tl-row rv"><div class="when">2021 — 2025</div><div><h3>B.Tech, Computer Science · GLA University</h3><p>CPI 8.27. Hackathons, DSA, and too many side projects.</p></div><span class="tag">graduated</span></div>
     </div>
-  </article>
+  </section>
+</div>
 
-  <article class="case">
-    <div class="idx"><b>06</b>CRM frontend<br>800+ commits</div>
-    <div>
-      <h3>The Pronnel app itself</h3>
-      <ul>
-        <li>Custom roles and permissions, and card filters that stay in sync with group-by and board preferences.</li>
-        <li>Billing: coupons, promotional balance and feature limits by plan.</li>
-        <li>Automation version history with restore, a message-queue viewer, an email channel and live call events.</li>
-        <li>Infinite scroll, i18n in several languages, and layouts that work on mobile.</li>
-      </ul>
-      <div class="tags"><span>Angular</span><span>RxJS</span><span>ngx-translate</span><span>SCSS</span></div>
+<div class="wrap">
+  <div class="cta" id="contact">
+    <div class="eyebrow rv" style="justify-content:center">Contact</div>
+    <h2 class="rv">Got a hard problem?<br><span class="acc">I want it.</span></h2>
+    <p class="rv">I'm open to full stack, integrations and voice/WebRTC roles. I reply fast.</p>
+    <div class="ctas rv">
+      <a class="btn pri" href="mailto:amanjhavdjs12tha@gmail.com">amanjhavdjs12tha@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/aman-jha-07334a254/">LinkedIn ↗</a>
+      <a class="btn" href="https://github.com/amanjha7">GitHub ↗</a>
     </div>
-  </article>
-</section>
-
-<section>
-  <h2>Things I've <em>integrated</em></h2>
-  <p class="sub">Each of these runs in production as its own service or SDK integration.</p>
-  <ul class="integrations">
-    <li>HubSpot<small>dialer</small></li><li>Salesforce<small>dialer</small></li><li>Pipedrive<small>dialer</small></li><li>Zoho CRM<small>dialer</small></li><li>Freshworks<small>dialer</small></li>
-    <li>Meta Lead Ads</li><li>Meta Conversions</li><li>Facebook Posts</li><li>Instagram</li><li>Threads</li>
-    <li>LinkedIn Ads</li><li>LinkedIn</li><li>Google Ads</li><li>Snapchat Ads</li><li>Twitter / X Ads</li><li>Twitter / X Posts</li>
-    <li>Stripe</li><li>Razorpay</li><li>PayPal</li><li>DocuSign</li><li>Zoho Sign</li><li>SignWell</li>
-    <li>Zoom</li><li>Webex</li><li>Google Meet</li><li>Zoho Meeting</li><li>Twilio</li><li>Aircall</li><li>JustCall</li><li>Maqsam</li>
-    <li>GitHub</li><li>GitLab</li><li>Mailchimp</li><li>Mailjet</li><li>Postmark</li><li>Zoho Mail</li><li>Jotform</li><li>Zoho Forms</li>
-    <li>WhatsApp</li><li>Crisp</li><li>Chatwoot</li><li>Papercups</li><li>99acres</li><li>Dripify</li><li>Deepgram</li><li>Soniox</li><li>OpenAI</li>
-  </ul>
-</section>
-
-<section id="skills">
-  <h2>Skills</h2>
-  <p class="sub">Only things I've used in production.</p>
-  <div class="skills">
-    <div><h4>Languages</h4><p>JavaScript, TypeScript, SQL, HTML/CSS, PHP, Apex, Java</p></div>
-    <div><h4>Backend</h4><p>Node.js, Express, REST, webhooks, WebSockets, BullMQ, OAuth 2.0, JWT</p></div>
-    <div><h4>Frontend</h4><p>Angular, RxJS, React, Next.js, Chrome extensions, Salesforce LWC</p></div>
-    <div><h4>Data</h4><p>MongoDB, PostgreSQL, MySQL, Redis</p></div>
-    <div><h4>Voice &amp; AI</h4><p>SIP.js, WebRTC, Web Audio, LLM tool calling, OpenAI, Deepgram</p></div>
-    <div><h4>Ops</h4><p>Docker, GitLab CI/CD, GitHub Actions, AWS (S3, EC2, Lambda), Linux</p></div>
   </div>
-</section>
+</div>
+</main>
 
-<section id="projects">
-  <h2>Side projects</h2>
-  <p class="sub">Open source, on my GitHub.</p>
-  <div class="projects">
-    <a class="proj" href="https://github.com/amanjha7/devpulse-ai"><h3>devpulse-ai</h3><p>A GitHub bot that reviews pull requests and runs security checks against the OWASP Top 10.</p><span class="lang">TypeScript · Node.js</span></a>
-    <a class="proj" href="https://github.com/amanjha7/pulse-engine"><h3>pulse-engine</h3><p>A high-throughput webhook delivery engine with retries, built to run in Docker.</p><span class="lang">TypeScript · Docker</span></a>
-    <a class="proj" href="https://document-frontend-eight.vercel.app"><h3>Document service</h3><p>Upload and convert documents, with an Angular frontend and a Node backend. Live demo.</p><span class="lang">Angular · Node.js</span></a>
-    <a class="proj" href="https://github.com/amanjha7/socialbuzz-backend"><h3>socialbuzz</h3><p>A full stack social app with separate frontend and backend repos.</p><span class="lang">JavaScript · Node.js</span></a>
-    <a class="proj" href="https://github.com/amanjha7/Uber-Backend"><h3>Uber-Backend</h3><p>The backend for a ride-hailing service, modelled on Uber.</p><span class="lang">TypeScript</span></a>
-    <a class="proj" href="https://github.com/amanjha7/chess"><h3>chess</h3><p>Chess in the browser.</p><span class="lang">JavaScript</span></a>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Aman Jha · Mathura, India</span>
+    <span>Hand-written HTML, CSS and JS · deployed with GitHub Actions · press <span class="kbd" id="palBtn2">⌘K</span></span>
   </div>
-</section>
-
-<section>
-  <h2>Education</h2>
-  <div class="edu"><div class="when">2021 — 2025</div><div><b>B.Tech, Computer Science</b> — GLA University, Mathura · CPI 8.27</div></div>
-  <div class="edu"><div class="when">Certifications</div><div>Java (Infosys Springboard) · Cybersecurity Essentials (Cisco Networking Academy)</div></div>
-</section>
-
-<footer id="contact">
-  <h2>Let's <em>talk</em>.</h2>
-  <p class="sub">I'm open to full stack, integrations and voice/WebRTC roles.</p>
-  <div class="contact">
-    <a href="mailto:amanjhavdjs12tha@gmail.com">amanjhavdjs12tha@gmail.com</a>
-    <a href="https://www.linkedin.com/in/aman-jha-07334a254/">LinkedIn</a>
-    <a href="https://github.com/amanjha7">GitHub</a>
-    <a href="assets/Aman_Jha_Resume.pdf">Resume (PDF)</a>
-  </div>
-  <div class="fine">Plain HTML and CSS, deployed with GitHub Actions to GitHub Pages.</div>
 </footer>
 
+<div class="pal-bg" id="pal" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="pal">
+    <input id="palIn" placeholder="Type a command or search…" autocomplete="off">
+    <ul id="palList"></ul>
+  </div>
 </div>
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  const EMAIL = "amanjhavdjs12tha@gmail.com";
+  const RESUME = "assets/Aman_Jha_Resume.pdf";
+  const $ = s => document.querySelector(s);
+
+  const nav = $("#nav");
+  addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 10), {passive: true});
+
+  const track = $("#track"); track.innerHTML += track.innerHTML;
+
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }), {threshold: .12});
+  document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+  document.querySelectorAll(".card").forEach(c => c.addEventListener("pointermove", e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px");
+    c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }));
+
+  const toast = $("#toast"); let tt;
+  const say = m => { toast.textContent = m; toast.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove("show"), 1800); };
+  const copyEmail = async () => {
+    try { await navigator.clipboard.writeText(EMAIL); say("Email copied ✓"); }
+    catch { location.href = "mailto:" + EMAIL; }
+  };
+  $("#copyMail").addEventListener("click", copyEmail);
+
+  // terminal
+  const log = $("#tlog"), input = $("#ti"), body = $("#tb");
+  let touched = false;
+  const out = (html, cls = "o") => { const d = document.createElement("div"); d.className = cls; d.innerHTML = html; log.appendChild(d); body.scrollTop = body.scrollHeight; };
+  const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const go = id => document.getElementById(id).scrollIntoView({behavior: "smooth"});
+  const CMDS = {
+    help: () => out("whoami  work  stack  projects  resume  contact  hire  ls  clear\n<span class=dim>there's also a hidden one. it starts with sudo.</span>"),
+    whoami: () => out("Aman Jha. Full stack engineer (MTS-1) @ Profunnel.\nI build voice, auth and integrations, then make them work in production."),
+    work: () => { out("→ dialer inside 5 CRMs\n→ one OAuth backend for all of them\n→ 45+ integrations\n→ session replay engine\n<span class=dim>scrolling you there…</span>"); setTimeout(() => go("work"), 500); },
+    stack: () => out("node · typescript · angular · express\nsip.js · webrtc · oauth2 · mongodb · postgres · redis · docker"),
+    projects: () => { out("devpulse-ai · pulse-engine · document-service"); setTimeout(() => go("projects"), 400); },
+    resume: () => { out(`opening <a href="${RESUME}" target="_blank">resume.pdf</a>…`); window.open(RESUME, "_blank"); },
+    contact: () => out(`email    <a href="mailto:${EMAIL}">${EMAIL}</a>\nlinkedin <a href="https://www.linkedin.com/in/aman-jha-07334a254/" target="_blank">/in/aman-jha-07334a254</a>\ngithub   <a href="https://github.com/amanjha7" target="_blank">@amanjha7</a>`),
+    hire: () => out(`good call. <a href="mailto:${EMAIL}?subject=Let's%20talk">send the email →</a>`),
+    sudo: () => out("usage: sudo hire aman"),
+    "sudo hire aman": () => { out("[sudo] password for recruiter: ********\n<span class=acc>✓ permission granted. opening your mail client…</span>"); setTimeout(() => location.href = `mailto:${EMAIL}?subject=We%20want%20to%20hire%20you`, 900); },
+    ls: () => out("dialer/  oauth/  integrations/  replay/  hunger.txt"),
+    "cat hunger.txt": () => out("unmatched. next question."),
+    clear: () => { log.innerHTML = ""; },
+  };
+  const run = raw => {
+    const cmd = raw.trim().toLowerCase().replace(/\s+/g, " ");
+    if (!cmd) return;
+    out(`<span class="p">❯</span> ${esc(raw)}`, "");
+    (CMDS[cmd] || (() => out(`command not found: ${esc(cmd)}. try <b>help</b>`)))();
+  };
+  input.addEventListener("keydown", e => {
+    touched = true;
+    if (e.key === "Enter") { run(input.value); input.value = ""; }
+  });
+  body.addEventListener("click", () => input.focus({preventScroll: true}));
+
+  (async () => {
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    await wait(900);
+    for (const c of ["whoami", "cat hunger.txt"]) {
+      if (touched) return;
+      if (reduce) input.value = c;
+      else for (const ch of c) { if (touched) return; input.value += ch; await wait(55 + Math.random() * 40); }
+      await wait(250); if (touched) return;
+      run(input.value); input.value = "";
+      await wait(600);
+    }
+    if (!touched) out('<span class=dim>your turn. type <b>help</b></span>', "");
+  })();
+
+  // command palette
+  const pal = $("#pal"), palIn = $("#palIn"), palList = $("#palList");
+  const ACTIONS = [
+    ["Go to Work", "section", () => go("work")],
+    ["Go to How I work", "section", () => go("how")],
+    ["Go to Stack", "section", () => go("stack")],
+    ["Go to Side projects", "section", () => go("projects")],
+    ["Go to Contact", "section", () => go("contact")],
+    ["Download resume", "pdf", () => window.open(RESUME, "_blank")],
+    ["Copy email address", "copy", copyEmail],
+    ["Email Aman", "mail", () => location.href = "mailto:" + EMAIL],
+    ["Open GitHub", "link", () => window.open("https://github.com/amanjha7", "_blank")],
+    ["Open LinkedIn", "link", () => window.open("https://www.linkedin.com/in/aman-jha-07334a254/", "_blank")],
+  ];
+  let sel = 0, shown = ACTIONS;
+  const render = () => {
+    const q = palIn.value.toLowerCase();
+    shown = ACTIONS.filter(a => a[0].toLowerCase().includes(q));
+    sel = Math.min(sel, Math.max(shown.length - 1, 0));
+    palList.innerHTML = shown.map((a, i) => `<li class="${i === sel ? "on" : ""}" data-i="${i}">${a[0]}<small>${a[1]}</small></li>`).join("") || "<li>No matches</li>";
+  };
+  const open = () => { pal.classList.add("open"); palIn.value = ""; sel = 0; render(); palIn.focus(); };
+  const close = () => pal.classList.remove("open");
+  const exec = i => { const a = shown[i]; if (a) { close(); a[2](); } };
+  addEventListener("keydown", e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); pal.classList.contains("open") ? close() : open(); }
+    else if (e.key === "Escape") close();
+  });
+  palIn.addEventListener("input", () => { sel = 0; render(); });
+  palIn.addEventListener("keydown", e => {
+    if (!shown.length) return;
+    if (e.key === "ArrowDown") { sel = (sel + 1) % shown.length; render(); e.preventDefault(); }
+    if (e.key === "ArrowUp") { sel = (sel - 1 + shown.length) % shown.length; render(); e.preventDefault(); }
+    if (e.key === "Enter") exec(sel);
+  });
+  palList.addEventListener("click", e => { const li = e.target.closest("li[data-i]"); if (li) exec(+li.dataset.i); });
+  pal.addEventListener("click", e => { if (e.target === pal) close(); });
+  $("#palBtn").addEventListener("click", open);
+  $("#palBtn2").addEventListener("click", open);
+  if (!/Mac|iPhone|iPad/.test(navigator.platform)) document.querySelectorAll(".kbd").forEach(k => k.textContent = "Ctrl K");
+})();
+</script>
 </body>
 </html>
