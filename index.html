@@ -167,6 +167,11 @@ pre.code .c{color:var(--muted)} pre.code .kw{color:#c7a6ff} pre.code .f{color:va
 .proj:hover .arr{transform:translate(3px,-3px);color:var(--acc)}
 .proj h3{font:700 22px var(--sans);letter-spacing:-.02em;margin:18px 0 8px}
 .proj p{color:var(--soft);font-size:15.5px;margin:0 0 18px;flex:1}
+.proj.feat{grid-column:1/-1;display:grid;grid-template-columns:96px 1fr;gap:8px 28px;align-items:start}
+.proj.feat .logo{grid-row:1/span 4;width:96px;height:96px;border-radius:22px}
+.proj.feat h3{margin-top:10px}
+.proj.feat .links{display:flex;gap:18px;flex-wrap:wrap;font:500 13px var(--mono);color:var(--acc);margin-bottom:14px}
+@media (max-width:760px){.proj.feat{grid-template-columns:1fr}.proj.feat .logo{grid-row:auto;width:64px;height:64px;border-radius:16px}}
 
 /* timeline */
 .tl{border-top:1px solid var(--line)}
@@ -413,6 +418,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="eyebrow rv">Open source</div>
     <h2 class="rv">Side projects.</h2>
     <div class="projs" style="margin-top:40px">
+      <a class="proj feat rv" href="https://github.com/amanjhacodes55/codecrack"><img class="logo" src="assets/codecrack-logo.svg" alt="CodeCrack logo"><div class="top"><span>Next.js · Node.js · MongoDB · Python · Docker</span><span class="arr">↗</span></div><h3>CodeCrack — online coding judge</h3><p>A HackerRank-style practice platform I built to prepare for the Infosys SP/DSE coding test. It runs untrusted code against hidden tests in a network-isolated Docker sandbox, has a step-through debugger with breakpoints and reverse stepping, 71 problems verified against brute-force solutions, timed mock tests, discussions and an admin review pipeline for community problems.</p><div class="tags"><span>Featured</span><span>Full stack</span><span>Sandboxing</span><span>Auth.js</span></div></a>
       <a class="proj rv" href="https://github.com/amanjhacodes55/devpulse-ai"><div class="top"><span>TypeScript · Node.js</span><span class="arr">↗</span></div><h3>devpulse-ai</h3><p>A GitHub bot that reviews pull requests and runs security checks against the OWASP Top 10.</p><div class="tags"><span>GitHub App</span><span>Security</span></div></a>
       <a class="proj rv" href="https://github.com/amanjhacodes55/pulse-engine"><div class="top"><span>TypeScript · Docker</span><span class="arr">↗</span></div><h3>pulse-engine</h3><p>A high-throughput webhook delivery engine with retries, built to survive bad networks and worse endpoints.</p><div class="tags"><span>Webhooks</span><span>Queues</span></div></a>
       <a class="proj rv" href="https://document-frontend-eight.vercel.app"><div class="top"><span>Angular · Node.js</span><span class="arr">↗</span></div><h3>Document service</h3><p>Upload and convert DOCX and PDF files, with secure handling and automatic expiry. Live demo.</p><div class="tags"><span>Live</span><span>Full stack</span></div></a>
@@ -500,7 +506,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     whoami: () => out("Aman Jha. Full stack engineer (MTS-1) @ Profunnel.\nI build voice, auth and integrations, then make them work in production."),
     work: () => { out("→ dialer inside 5 CRMs\n→ one OAuth backend for all of them\n→ 45+ integrations\n→ session replay engine\n<span class=dim>scrolling you there…</span>"); setTimeout(() => go("work"), 500); },
     stack: () => out("node · typescript · angular · express\nsip.js · webrtc · oauth2 · mongodb · postgres · redis · docker"),
-    projects: () => { out("devpulse-ai · pulse-engine · document-service"); setTimeout(() => go("projects"), 400); },
+    projects: () => { out("codecrack · devpulse-ai · pulse-engine · document-service"); setTimeout(() => go("projects"), 400); },
     resume: () => { out(`opening <a href="${RESUME}" target="_blank">resume.pdf</a>…`); window.open(RESUME, "_blank"); },
     contact: () => out(`email    <a href="mailto:${EMAIL}">${EMAIL}</a>\nlinkedin <a href="https://www.linkedin.com/in/aman-jha-07334a254/" target="_blank">/in/aman-jha-07334a254</a>\ngithub   <a href="https://github.com/amanjhacodes55" target="_blank">@amanjhacodes55</a>`),
     hire: () => out(`good call. <a href="mailto:${EMAIL}?subject=Let's%20talk">send the email →</a>`),
