@@ -314,6 +314,24 @@ pre.code .c{color:var(--muted)} pre.code .kw{color:#c7a6ff} pre.code .f{color:va
 .qr i.o{background:transparent;animation:none}
 @keyframes qr{50%{opacity:.55}}
 
+/* hearthly mock */
+.inbox{display:grid;grid-template-columns:130px 1fr;gap:12px;min-height:260px}
+.convs{display:grid;gap:6px;align-content:start}
+.cv{display:flex;align-items:center;gap:8px;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);font-size:11.5px;color:var(--ink);min-width:0}
+.cv div{min-width:0}
+.cv small{display:block;color:var(--muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv.on{border-color:var(--pc);background:color-mix(in srgb,var(--pc) 10%,transparent)}
+.cv .av{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 11px var(--mono);color:#0a0a0a;flex:none}
+.chat{display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:12px;background:var(--bg1);border:1px solid var(--line)}
+.msg{max-width:85%;padding:8px 11px;border-radius:12px;font:13px/1.4 var(--sans);opacity:0;animation:tin 8s var(--ease) infinite;animation-delay:calc(var(--k)*.9s)}
+.msg.in{align-self:flex-start;background:var(--bg2);border:1px solid var(--line2);color:var(--ink);border-bottom-left-radius:4px}
+.msg.out{align-self:flex-end;background:var(--pc);color:#0a0a0a;font-weight:500;border-bottom-right-radius:4px}
+.typing{display:flex;gap:4px;padding:10px 12px;border-radius:12px;background:var(--bg2);align-self:flex-start;margin-top:auto}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:bob 1.2s ease-in-out infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bob{50%{transform:translateY(-4px);background:var(--pc)}}
+@media (max-width:680px){.inbox{grid-template-columns:1fr}.convs{grid-template-columns:repeat(3,1fr)}.cv small{display:none}}
+
 /* small projects */
 .projs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
 .proj{display:flex;flex-direction:column;padding:26px}
@@ -415,7 +433,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .wi,.rv,.fade-up{translate:none!important;rotate:none!important;opacity:1!important}
-  .trow{opacity:1}
+  .trow,.msg{opacity:1}
   #net{display:none}
 }
 </style>
@@ -700,6 +718,36 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
               <div class="settle">
                 <div><h6>Settle up · 3 payments</h6><p>Neha → Kabir <b>₹4,125</b></p><p>Arjun → Kabir <b>₹1,350</b></p><p>Arjun → Riya <b>₹675</b></p><span class="pay">Pay with UPI</span></div>
                 <div class="qr" id="qr"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="pcard" style="--n:3">
+        <div class="pcard-in" style="--pc:#ffb547">
+          <div>
+            <img class="plogo" src="assets/hearthly-logo.svg" alt="Hearthly logo">
+            <div class="meta"><span class="n">04</span><span>Next.js · TypeScript · MongoDB · SSE · Docker</span></div>
+            <h3>Hearthly <span class="serif">customer messaging</span></h3>
+            <p>An open-source, Intercom-style support platform: an embeddable chat widget in a Shadow DOM, a realtime team inbox with assignment and canned replies, visitor tracking, a CRM with segments, campaigns and automations, and a public help center. API-first, with OpenAPI docs, signed webhooks and OAuth 2.0 apps.</p>
+            <div class="feats"><span>Shadow DOM widget</span><span>Realtime inbox</span><span>Campaigns</span><span>Help center</span><span>OpenAPI · OAuth</span></div>
+            <div class="plinks"><a class="btn pri mag" href="https://hearthly-9bk9.onrender.com" target="_blank" rel="noopener">▶ Live demo</a><a class="btn mag" href="https://github.com/amanjhacodes55/hearthly" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </div>
+          <div class="win" aria-hidden="true">
+            <div class="win-bar"><i></i><i></i><i></i><span>Team inbox</span><em>● live · SSE</em></div>
+            <div class="win-body inbox">
+              <div class="convs">
+                <div class="cv on"><span class="av" style="background:#ffb547">M</span><div>Meera<small>Where's my invoice?</small></div></div>
+                <div class="cv"><span class="av" style="background:#7b7bff">D</span><div>Dev<small>API key question</small></div></div>
+                <div class="cv"><span class="av" style="background:#3ddc97">S</span><div>Sana<small>Thanks, solved!</small></div></div>
+              </div>
+              <div class="chat">
+                <div class="msg in" style="--k:0">Hi! I can't find last month's invoice.</div>
+                <div class="msg out" style="--k:1">Sending it now, Meera. One sec.</div>
+                <div class="msg out" style="--k:2">📎 invoice-sep.pdf</div>
+                <div class="msg in" style="--k:3">Got it, thank you! 🙌</div>
+                <div class="typing"><i></i><i></i><i></i></div>
               </div>
             </div>
           </div>
@@ -1057,7 +1105,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     work: () => { out("→ dialer inside 5 CRMs\n→ one OAuth backend for all of them\n→ 45+ integrations\n→ session replay engine\n<span class=dim>scrolling you there…</span>"); setTimeout(() => go("work"), 500); },
     ai: () => { out("→ live call summaries in the dialer\n→ transcription with deepgram\n→ openai + llm tools in crm workflows\n→ devpulse-ai: ai pr reviewer\n<span class=dim>scrolling you there…</span>"); setTimeout(() => go("ai"), 500); },
     stack: () => out("node · typescript · angular · express\nsip.js · webrtc · openai · deepgram\noauth2 · mongodb · postgres · redis · docker"),
-    projects: () => { out("codecrack · orbitcrm · tabby · devpulse-ai · pulse-engine · document-service"); setTimeout(() => go("projects"), 400); },
+    projects: () => { out("codecrack · orbitcrm · tabby · hearthly · devpulse-ai · pulse-engine · document-service"); setTimeout(() => go("projects"), 400); },
     resume: () => { out(`opening <a href="${RESUME}" target="_blank">resume.pdf</a>…`); window.open(RESUME, "_blank"); },
     contact: () => out(`email    <a href="mailto:${EMAIL}">${EMAIL}</a>\nlinkedin <a href="https://www.linkedin.com/in/aman-jha-07334a254/" target="_blank">/in/aman-jha-07334a254</a>\ngithub   <a href="https://github.com/amanjhacodes55" target="_blank">@amanjhacodes55</a>`),
     hire: () => out(`good call. <a href="mailto:${EMAIL}?subject=Let's%20talk">send the email →</a>`),
